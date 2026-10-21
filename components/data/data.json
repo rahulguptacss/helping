@@ -1,0 +1,200 @@
+{
+  "common": {
+    "Header": {
+      "logo": "/logo/logo.png",
+      "logo_text": "Helping Hands",
+      "logo_subtext": "NGO for a Better Tomorrow",
+      "links": [
+        { "name": "Home", "href": "/", "number": "01" },
+        { "name": "About Us", "href": "#about", "number": "02" },
+        { "name": "Our Causes", "href": "#causes", "number": "03" },
+        { "name": "Impact & Stats", "href": "#stats", "number": "04" },
+        { "name": "Testimonials", "href": "#testimonials", "number": "05" },
+        { "name": "Contact Us", "href": "#contact", "number": "06" }
+      ],
+      "menu_button_text": "Menu",
+      "close_button_text": "Close",
+      "donate_button_text": "Donate Now",
+      "donate_button_link": "#causes",
+      "contact_info": {
+        "email": "info@helpinghands.org",
+        "phone": "+91 98765 43210"
+      }
+    },
+    "Footer": {
+      "logo": "/logo/logo.png",
+      "logo_text": "Helping Hands",
+      "logo_subtext": "NGO for a Better Tomorrow",
+      "nav_links": [
+        { "name": "Home", "href": "/" },
+        { "name": "About Us", "href": "#about" },
+        { "name": "Our Causes", "href": "#causes" },
+        { "name": "Our Team", "href": "#team" },
+        { "name": "Gallery", "href": "#gallery" },
+        { "name": "Blog", "href": "#blog" },
+        { "name": "FAQs", "href": "#faqs" },
+        { "name": "Contact Us", "href": "#contact" }
+      ],
+      "contact_heading": "Contact Info",
+      "contact_info": {
+        "email": "info@helpinghands.org",
+        "phone": "+91 98765 43210",
+        "address_line1": "123, Green Park,",
+        "address_line2": "New Delhi, India - 110016"
+      },
+      "social_heading": "Follow Us",
+      "socials": [
+        { "name": "Facebook", "href": "https://facebook.com", "icon": "facebook" },
+        { "name": "Instagram", "href": "https://instagram.com", "icon": "instagram" },
+        { "name": "Youtube", "href": "https://youtube.com", "icon": "youtube" },
+        { "name": "Linkedin", "href": "https://linkedin.com", "icon": "linkedin" }
+      ],
+      "copyright": "Copyright © 2026. All rights reserved. Powered by Lestow"
+    }
+  },
+  "categories": {
+    "NGO": {
+      "templateComponents": {
+        "template-1": {
+          "pages": {
+            "home": {
+              "title": "Home",
+              "pageName": "Home",
+              "metadata": {
+                "title": "Helping Hands | NGO for a Better Tomorrow",
+                "description": "Small Help, Big Smiles, Brighter Futures. Join our movement led by values, powered by people."
+              }
+            }
+          },
+          "sections": {
+            "hero": {
+              "title_line1": "Small Help",
+              "title_line2": "Big Smiles",
+              "title_line3": "Brighter Futures!",
+              "button": {
+                "text": "Contact Us",
+                "icon": "heart",
+                "href": "#contact"
+              },
+              "image": "/hero/hero.png",
+              "image_alt": "Joyful smiling Indian children",
+              "bg_watermark": "/hero/hero-bg-hands.jpg"
+            },
+            "about": {
+              "badge": "ABOUT US",
+              "title_line1": "A MOVEMENT",
+              "title_line2": "LED BY VALUES,",
+              "title_line3": "POWERED BY",
+              "title_line4": "PEOPLE",
+              "join_badge": {
+                "text": "Get Involved",
+                "avatars": "/about/get-involved-avatar.webp"
+              },
+              "description": "We are a grassroots non-profit dedicated to bridging educational inequalities and healthcare disparities across underserved rural communities. By combining community trust with accountable action, we empower children and families to overcome generational poverty and achieve self-reliance.",
+              "image": "/img/about.png",
+              "image_alt": "Three joyful children smiling together outdoors"
+            },
+            "causes": {
+              "eyebrow": "OUR CAUSES",
+              "title": "Our Causes",
+              "button": {
+                "text": "View All Causes",
+                "href": "#causes"
+              },
+              "items": [
+                {
+                  "id": "01",
+                  "title": "Education",
+                  "tagline": "Empowering Through Knowledge",
+                  "description": "We support quality education for underprivileged children to help them build a brighter future.",
+                  "image": "/causes/education.png",
+                  "href": "#contact"
+                },
+                {
+                  "id": "02",
+                  "title": "Advocacy",
+                  "tagline": "Voices for Change",
+                  "description": "We raise awareness and advocate for the rights of vulnerable communities to create a more inclusive society.",
+                  "image": "/causes/advocacy.png",
+                  "href": "#contact"
+                },
+                {
+                  "id": "03",
+                  "title": "Environment",
+                  "tagline": "Protecting Nature",
+                  "description": "We work towards a cleaner, greener and healthier environment for future generations.",
+                  "image": "/causes/environment.png",
+                  "href": "#contact"
+                },
+                {
+                  "id": "04",
+                  "title": "Action",
+                  "tagline": "Making a Difference",
+                  "description": "We take action through community programs, relief work and long-term initiatives to improve lives.",
+                  "image": "/causes/action.png",
+                  "href": "#contact"
+                }
+              ]
+            },
+            "stats": {
+              "items": [
+                {
+                  "id": "01",
+                  "value": "10K",
+                  "label": "Lives Impacted",
+                  "line1": "Lives",
+                  "line2": "Impacted"
+                },
+                {
+                  "id": "02",
+                  "value": "500+",
+                  "label": "Children Supported",
+                  "line1": "Children",
+                  "line2": "Supported"
+                },
+                {
+                  "id": "03",
+                  "value": "50+",
+                  "label": "Community Programs",
+                  "line1": "Community",
+                  "line2": "Programs"
+                },
+                {
+                  "id": "04",
+                  "value": "15+",
+                  "label": "Years of Service",
+                  "line1": "Years of",
+                  "line2": "Service"
+                }
+              ]
+            },
+            "testimonials": {
+              "image": "/testimonials/teacher-storytime.png",
+              "image_alt": "Teacher volunteer reading storybook to children in outdoor library",
+              "items": [
+                {
+                  "id": "01",
+                  "quote": "Thanks to Helping Hands, my daughter now has access to quality education and a brighter future. Their support and care have truly changed our lives. We are grateful for their continuous efforts in the community.",
+                  "author": "Priya Sharma",
+                  "role": "Parent, Beneficiary"
+                },
+                {
+                  "id": "02",
+                  "quote": "The healthcare camps and educational resources provided by Helping Hands have given our entire village renewed hope and dignity.",
+                  "author": "Ramesh Kumar",
+                  "role": "Village Community Leader"
+                },
+                {
+                  "id": "03",
+                  "quote": "Volunteering with Helping Hands showed me the true power of grassroots compassion. Every single rupee donated creates tangible change.",
+                  "author": "Ananya Sen",
+                  "role": "Youth Volunteer"
+                }
+              ]
+            }
+          }
+        }
+      }
+    }
+  }
+}
