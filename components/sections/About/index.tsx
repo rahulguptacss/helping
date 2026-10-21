@@ -2,7 +2,7 @@
 
 import { motion } from 'framer-motion';
 import { Megaphone, Send } from 'lucide-react';
-import type { AboutSectionData } from '../../types';
+import type { AboutSectionData } from '@/components/types';
 
 interface AboutProps {
   data: AboutSectionData;
@@ -27,7 +27,7 @@ export default function About({ data }: AboutProps) {
               <motion.img
                 whileHover={{ scale: 1.03 }}
                 transition={{ duration: 0.6, ease: 'easeOut' }}
-                src={data.image || '/img/about.png'}
+                src={data.image || '/img/about.webp'}
                 alt={data.image_alt || 'Children smiling together'}
                 className="h-full w-full object-cover object-center rounded-none"
               />

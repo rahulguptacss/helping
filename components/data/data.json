@@ -1,53 +1,127 @@
 {
   "common": {
     "Header": {
-      "logo": "/logo/logo.png",
+      "logo": "/logo/logo.webp",
       "logo_text": "Helping Hands",
       "logo_subtext": "NGO for a Better Tomorrow",
       "links": [
-        { "name": "Home", "href": "/", "number": "01" },
-        { "name": "About Us", "href": "#about", "number": "02" },
-        { "name": "Our Causes", "href": "#causes", "number": "03" },
-        { "name": "Impact & Stats", "href": "#stats", "number": "04" },
-        { "name": "Testimonials", "href": "#testimonials", "number": "05" },
-        { "name": "Contact Us", "href": "#contact", "number": "06" }
+        {
+          "name": "Home",
+          "href": "/",
+          "number": "01"
+        },
+        {
+          "name": "About Us",
+          "href": "/about",
+          "number": "02"
+        },
+        {
+          "name": "Our Causes",
+          "href": "/causes",
+          "number": "03"
+        },
+        {
+          "name": "Our Team",
+          "href": "/team",
+          "number": "04"
+        },
+        {
+          "name": "Gallery",
+          "href": "/gallery",
+          "number": "05"
+        },
+        {
+          "name": "Blog",
+          "href": "/blog",
+          "number": "06"
+        },
+        {
+          "name": "FAQs",
+          "href": "/faq",
+          "number": "07"
+        },
+        {
+          "name": "Contact Us",
+          "href": "/contact",
+          "number": "08"
+        }
       ],
       "menu_button_text": "Menu",
       "close_button_text": "Close",
       "donate_button_text": "Donate Now",
       "donate_button_link": "#causes",
       "contact_info": {
-        "email": "info@helpinghands.org",
-        "phone": "+91 98765 43210"
+        "email": "info@xyz.com",
+        "phone": "+100000000000"
       }
     },
     "Footer": {
-      "logo": "/logo/logo.png",
+      "logo": "/logo/logo.webp",
       "logo_text": "Helping Hands",
       "logo_subtext": "NGO for a Better Tomorrow",
       "nav_links": [
-        { "name": "Home", "href": "/" },
-        { "name": "About Us", "href": "#about" },
-        { "name": "Our Causes", "href": "#causes" },
-        { "name": "Our Team", "href": "#team" },
-        { "name": "Gallery", "href": "#gallery" },
-        { "name": "Blog", "href": "#blog" },
-        { "name": "FAQs", "href": "#faqs" },
-        { "name": "Contact Us", "href": "#contact" }
+        {
+          "name": "Home",
+          "href": "/"
+        },
+        {
+          "name": "About Us",
+          "href": "/about"
+        },
+        {
+          "name": "Our Causes",
+          "href": "/causes"
+        },
+        {
+          "name": "Our Team",
+          "href": "/team"
+        },
+        {
+          "name": "Gallery",
+          "href": "/gallery"
+        },
+        {
+          "name": "Blog",
+          "href": "/blog"
+        },
+        {
+          "name": "FAQs",
+          "href": "/faq"
+        },
+        {
+          "name": "Contact Us",
+          "href": "/contact"
+        }
       ],
       "contact_heading": "Contact Info",
       "contact_info": {
-        "email": "info@helpinghands.org",
-        "phone": "+91 98765 43210",
-        "address_line1": "123, Green Park,",
-        "address_line2": "New Delhi, India - 110016"
+        "email": "info@xyz.com",
+        "phone": "+100000000000",
+        "address_line1": "123 Education Lane,",
+        "address_line2": "New York, NY 10001"
       },
       "social_heading": "Follow Us",
       "socials": [
-        { "name": "Facebook", "href": "https://facebook.com", "icon": "facebook" },
-        { "name": "Instagram", "href": "https://instagram.com", "icon": "instagram" },
-        { "name": "Youtube", "href": "https://youtube.com", "icon": "youtube" },
-        { "name": "Linkedin", "href": "https://linkedin.com", "icon": "linkedin" }
+        {
+          "name": "Facebook",
+          "href": "https://facebook.com",
+          "icon": "facebook"
+        },
+        {
+          "name": "Instagram",
+          "href": "https://instagram.com",
+          "icon": "instagram"
+        },
+        {
+          "name": "Youtube",
+          "href": "https://youtube.com",
+          "icon": "youtube"
+        },
+        {
+          "name": "Linkedin",
+          "href": "https://linkedin.com",
+          "icon": "linkedin"
+        }
       ],
       "copyright": "Copyright © 2026. All rights reserved. Powered by Lestow"
     }
@@ -63,7 +137,251 @@
               "metadata": {
                 "title": "Helping Hands | NGO for a Better Tomorrow",
                 "description": "Small Help, Big Smiles, Brighter Futures. Join our movement led by values, powered by people."
-              }
+              },
+              "components": [
+                {
+                  "key": "HeroSection",
+                  "component": "Hero"
+                },
+                {
+                  "key": "AboutSection",
+                  "component": "About"
+                },
+                {
+                  "key": "CausesSection",
+                  "component": "Causes"
+                },
+                {
+                  "key": "StatsSection",
+                  "component": "Stats"
+                },
+                {
+                  "key": "TestimonialsSection",
+                  "component": "Testimonials"
+                }
+              ]
+            },
+            "about": {
+              "title": "About Us",
+              "pageName": "About Us",
+              "metadata": {
+                "title": "About Us | Helping Hands",
+                "description": "Driven to connect to, integrate and transform communities. Learn more about our story, mission, and movement."
+              },
+              "components": [
+                {
+                  "key": "BreadcrumbSection",
+                  "component": "Breadcrumb"
+                },
+                {
+                  "key": "AboutSection",
+                  "component": "About"
+                },
+                {
+                  "key": "StatsSection",
+                  "component": "Stats"
+                },
+                {
+                  "key": "OurStorySection",
+                  "component": "OurStory"
+                },
+                {
+                  "key": "TestimonialsSection",
+                  "component": "Testimonials"
+                }
+              ]
+            },
+            "team": {
+              "title": "Our Teams",
+              "pageName": "Our Teams",
+              "metadata": {
+                "title": "Our Teams | Helping Hands",
+                "description": "Meet our dedicated team of passionate individuals working together to create a healthier, safer and brighter future for communities."
+              },
+              "breadcrumb": {
+                "title": "Our Teams",
+                "path": "Home / Our Teams",
+                "image": "/img/banner.webp",
+                "bottom_shape": "/img/banner-bottom.webp"
+              },
+              "components": [
+                {
+                  "key": "BreadcrumbSection",
+                  "component": "Breadcrumb"
+                },
+                {
+                  "key": "TeamSection",
+                  "component": "Team"
+                }
+              ]
+            },
+            "gallery": {
+              "title": "Our Gallery",
+              "pageName": "Our Gallery",
+              "metadata": {
+                "title": "Our Gallery | Helping Hands",
+                "description": "Explore our journey through images — from community support and volunteer efforts to the lives we've touched. Every photo tells a story of hope, kindness and positive change."
+              },
+              "breadcrumb": {
+                "title": "Our Gallery",
+                "path": "Home / Our Gallery",
+                "image": "/img/banner.webp",
+                "bottom_shape": "/img/banner-bottom.webp"
+              },
+              "components": [
+                {
+                  "key": "BreadcrumbSection",
+                  "component": "Breadcrumb"
+                },
+                {
+                  "key": "GallerySection",
+                  "component": "Gallery"
+                }
+              ]
+            },
+            "contact": {
+              "title": "Contact Us",
+              "pageName": "Contact Us",
+              "metadata": {
+                "title": "Contact Us | Helping Hands",
+                "description": "Get in touch with Helping Hands NGO. Whether you have a question, want to support our cause, or are interested in volunteering, our team is here to help."
+              },
+              "breadcrumb": {
+                "title": "Contact Us",
+                "path": "Home / Contact Us",
+                "image": "/img/banner.webp",
+                "bottom_shape": "/img/banner-bottom.webp"
+              },
+              "components": [
+                {
+                  "key": "BreadcrumbSection",
+                  "component": "Breadcrumb"
+                },
+                {
+                  "key": "ContactSection",
+                  "component": "Contact"
+                }
+              ]
+            },
+            "faq": {
+              "title": "Faqs",
+              "pageName": "Faqs",
+              "metadata": {
+                "title": "FAQs | Helping Hands - Frequently Asked Questions",
+                "description": "Find answers to the most common questions about our work, donations, volunteering opportunities, and how you can make a difference with Helping Hands."
+              },
+              "breadcrumb": {
+                "title": "Faqs",
+                "path": "Home / Faqs",
+                "image": "/img/banner.webp",
+                "bottom_shape": "/img/banner-bottom.webp"
+              },
+              "components": [
+                {
+                  "key": "BreadcrumbSection",
+                  "component": "Breadcrumb"
+                },
+                {
+                  "key": "FaqSection",
+                  "component": "FAQ"
+                }
+              ]
+            },
+            "causes": {
+              "title": "Our Causes",
+              "pageName": "Our Causes",
+              "metadata": {
+                "title": "Our Causes | Helping Hands - Empowering Communities",
+                "description": "Discover our core causes — Education, Advocacy, Environment, and Action. Join Helping Hands in making a lasting impact."
+              },
+              "breadcrumb": {
+                "title": "Our Causes",
+                "path": "Home / Our Causes",
+                "image": "/img/banner.webp",
+                "bottom_shape": "/img/banner-bottom.webp"
+              },
+              "components": [
+                {
+                  "key": "BreadcrumbSection",
+                  "component": "Breadcrumb"
+                },
+                {
+                  "key": "CausesSection",
+                  "component": "Causes"
+                }
+              ]
+            },
+            "causes_details": {
+              "title": "Causes Details",
+              "pageName": "Causes Details",
+              "metadata": {
+                "title": "Causes Details | Helping Hands - Quality Education for Every Child",
+                "description": "We believe that every child deserves access to quality education. Learn about our approach, our impact, and how we empower underprivileged children."
+              },
+              "breadcrumb": {
+                "title": "Causes Details",
+                "path": "Home / Causes Details",
+                "image": "/img/banner.webp",
+                "bottom_shape": "/img/banner-bottom.webp"
+              },
+              "components": [
+                {
+                  "key": "BreadcrumbSection",
+                  "component": "Breadcrumb"
+                },
+                {
+                  "key": "CauseDetailsSection",
+                  "component": "CauseDetails"
+                }
+              ]
+            },
+            "blog": {
+              "title": "Our Blog",
+              "pageName": "Our Blog",
+              "metadata": {
+                "title": "Our Blog | Helping Hands - Stories of Hope and Impact",
+                "description": "Read the latest news, updates, community events, and inspirational stories from Helping Hands NGO."
+              },
+              "breadcrumb": {
+                "title": "Our Blog",
+                "path": "Home / Our Blog",
+                "image": "/img/banner.webp",
+                "bottom_shape": "/img/banner-bottom.webp"
+              },
+              "components": [
+                {
+                  "key": "BreadcrumbSection",
+                  "component": "Breadcrumb"
+                },
+                {
+                  "key": "BlogsSection",
+                  "component": "Blogs"
+                }
+              ]
+            },
+            "blog_detail": {
+              "title": "Blog Details",
+              "pageName": "Blog Details",
+              "metadata": {
+                "title": "Blog Details | Helping Hands",
+                "description": "Learn exactly how we made event and brought community support to those in need."
+              },
+              "breadcrumb": {
+                "title": "Blog Details",
+                "path": "Home / Blog Details",
+                "image": "/img/banner.webp",
+                "bottom_shape": "/img/banner-bottom.webp"
+              },
+              "components": [
+                {
+                  "key": "BreadcrumbSection",
+                  "component": "Breadcrumb"
+                },
+                {
+                  "key": "BlogDetailSection",
+                  "component": "BlogDetail"
+                }
+              ]
             }
           },
           "sections": {
@@ -76,9 +394,9 @@
                 "icon": "heart",
                 "href": "#contact"
               },
-              "image": "/hero/hero.png",
+              "image": "/hero/hero.webp",
               "image_alt": "Joyful smiling Indian children",
-              "bg_watermark": "/hero/hero-bg-hands.jpg"
+              "bg_watermark": "/hero/hero-bg-hands.webp"
             },
             "about": {
               "badge": "ABOUT US",
@@ -91,51 +409,492 @@
                 "avatars": "/about/get-involved-avatar.webp"
               },
               "description": "We are a grassroots non-profit dedicated to bridging educational inequalities and healthcare disparities across underserved rural communities. By combining community trust with accountable action, we empower children and families to overcome generational poverty and achieve self-reliance.",
-              "image": "/img/about.png",
+              "image": "/img/about.webp",
               "image_alt": "Three joyful children smiling together outdoors"
             },
             "causes": {
               "eyebrow": "OUR CAUSES",
               "title": "Our Causes",
+              "page_heading": {
+                "eyebrow": "OUR CAUSES",
+                "title_prefix": "Support Our ",
+                "title_highlight": "Causes",
+                "description": "Your support helps us bring positive change to the lives of underprivileged communities and create a brighter, healthier and stronger tomorrow."
+              },
               "button": {
                 "text": "View All Causes",
-                "href": "#causes"
+                "href": "/causes"
               },
+              "categories": [
+                "All Causes",
+                "Education",
+                "Advocacy",
+                "Environment",
+                "Action",
+                "Food & Nutrition",
+                "Women Empowerment"
+              ],
               "items": [
                 {
                   "id": "01",
+                  "category": "Education",
                   "title": "Education",
                   "tagline": "Empowering Through Knowledge",
                   "description": "We support quality education for underprivileged children to help them build a brighter future.",
-                  "image": "/causes/education.png",
-                  "href": "#contact"
+                  "image": "/causes/education.webp",
+                  "href": "/causes/education"
                 },
                 {
                   "id": "02",
+                  "category": "Advocacy",
                   "title": "Advocacy",
                   "tagline": "Voices for Change",
                   "description": "We raise awareness and advocate for the rights of vulnerable communities to create a more inclusive society.",
-                  "image": "/causes/advocacy.png",
-                  "href": "#contact"
+                  "image": "/causes/advocacy.webp",
+                  "href": "/causes/advocacy"
                 },
                 {
                   "id": "03",
+                  "category": "Environment",
                   "title": "Environment",
                   "tagline": "Protecting Nature",
                   "description": "We work towards a cleaner, greener and healthier environment for future generations.",
-                  "image": "/causes/environment.png",
-                  "href": "#contact"
+                  "image": "/causes/environment.webp",
+                  "href": "/causes/environment"
                 },
                 {
                   "id": "04",
+                  "category": "Action",
                   "title": "Action",
                   "tagline": "Making a Difference",
                   "description": "We take action through community programs, relief work and long-term initiatives to improve lives.",
-                  "image": "/causes/action.png",
-                  "href": "#contact"
+                  "image": "/causes/action.webp",
+                  "href": "/causes/action"
+                },
+                {
+                  "id": "05",
+                  "category": "Food & Nutrition",
+                  "title": "Food & Nutrition",
+                  "tagline": "Nourishing Lives",
+                  "description": "Help us provide nutritious meals and essential rations to children, elderly and families in need.",
+                  "image": "/causes/action.webp",
+                  "href": "/causes/food-nutrition"
+                },
+                {
+                  "id": "06",
+                  "category": "Women Empowerment",
+                  "title": "Women Empowerment",
+                  "tagline": "Skills & Self-Reliance",
+                  "description": "Support skill development, vocational training and self-reliance programs for rural women.",
+                  "image": "/gallery/gallery-6.webp",
+                  "href": "/causes/women-empowerment"
                 }
               ]
             },
+            "causes_details": [
+              {
+                "slug": "education",
+                "badge": "Education",
+                "title": "Quality Education for Every Child",
+                "description": "We believe that every child deserves access to quality education. Our education programs provide learning materials, school infrastructure support, and skill development opportunities to underprivileged children.",
+                "image": "/causes/education.webp",
+                "about": {
+                  "eyebrow": "About This Cause",
+                  "title": "Building Brighter Futures Through Education",
+                  "description": "Education is the foundation for a better tomorrow. Through this cause, we work to ensure that underprivileged children have access to proper schooling, essential learning resources, and a safe environment to grow and succeed. We collaborate with local communities, schools, and volunteers to remove barriers to education and create equal opportunities for every child.",
+                  "image": "/causes/education-study.webp"
+                },
+                "impact": {
+                  "eyebrow": "Our Impact So Far",
+                  "title": "Changing Lives Through Education",
+                  "subtitle": "Together, we are creating real change and empowering children to achieve their dreams.",
+                  "items": [
+                    {
+                      "value": "1,200+",
+                      "label": "Children Supported",
+                      "icon": "graduation-cap"
+                    },
+                    {
+                      "value": "25+",
+                      "label": "Schools Partnered",
+                      "icon": "users"
+                    },
+                    {
+                      "value": "5,000+",
+                      "label": "Learning Materials Provided",
+                      "icon": "book-open"
+                    },
+                    {
+                      "value": "100+",
+                      "label": "Volunteer Supporters",
+                      "icon": "heart"
+                    }
+                  ]
+                },
+                "approach": {
+                  "eyebrow": "How We Make a Difference",
+                  "title": "Our Approach",
+                  "image": "/causes/education-books.webp",
+                  "steps": [
+                    {
+                      "number": "01",
+                      "title": "Identify Needs",
+                      "description": "We work with local communities to understand the specific educational needs."
+                    },
+                    {
+                      "number": "02",
+                      "title": "Provide Resources",
+                      "description": "We supply books, uniforms, and essential learning materials."
+                    },
+                    {
+                      "number": "03",
+                      "title": "Build Infrastructure",
+                      "description": "We support the development of safe and child-friendly learning spaces."
+                    },
+                    {
+                      "number": "04",
+                      "title": "Empower for the Future",
+                      "description": "We focus on long-term programs to help children develop skills and confidence."
+                    }
+                  ]
+                }
+              },
+              {
+                "slug": "advocacy",
+                "badge": "Advocacy",
+                "title": "Voices for Change and Social Justice",
+                "description": "We raise awareness and advocate for the rights of vulnerable communities to create a more inclusive, just, and equitable society.",
+                "image": "/causes/advocacy.webp",
+                "about": {
+                  "eyebrow": "About This Cause",
+                  "title": "Standing Up for Equality and Human Dignity",
+                  "description": "Advocacy is about amplifying the voices of those who are often left unheard. We actively engage with policymakers, local panchayats, and civic groups to protect fundamental human rights, fight discrimination, and ensure social security access for vulnerable rural families.",
+                  "image": "/gallery/gallery-1.webp"
+                },
+                "impact": {
+                  "eyebrow": "Our Impact So Far",
+                  "title": "Strengthening Voices Across Communities",
+                  "subtitle": "Empowering people with legal awareness, constitutional rights, and collective civic action.",
+                  "items": [
+                    {
+                      "value": "3,500+",
+                      "label": "People Reached",
+                      "icon": "users"
+                    },
+                    {
+                      "value": "40+",
+                      "label": "Legal Aid Camps",
+                      "icon": "book-open"
+                    },
+                    {
+                      "value": "120+",
+                      "label": "Community Leaders Trained",
+                      "icon": "graduation-cap"
+                    },
+                    {
+                      "value": "85+",
+                      "label": "Civic Campaigns",
+                      "icon": "heart"
+                    }
+                  ]
+                },
+                "approach": {
+                  "eyebrow": "How We Make a Difference",
+                  "title": "Our Advocacy Roadmap",
+                  "image": "/gallery/gallery-2.webp",
+                  "steps": [
+                    {
+                      "number": "01",
+                      "title": "Community Dialogue",
+                      "description": "Engaging directly with grassroots families to identify legal and social challenges."
+                    },
+                    {
+                      "number": "02",
+                      "title": "Rights Awareness",
+                      "description": "Conducting workshops on government welfare schemes and citizen protection laws."
+                    },
+                    {
+                      "number": "03",
+                      "title": "Civic Alliances",
+                      "description": "Partnering with pro-bono lawyers and grassroots organizations for legal aid."
+                    },
+                    {
+                      "number": "04",
+                      "title": "Policy Engagement",
+                      "description": "Submitting citizen petitions and reform proposals to administrative authorities."
+                    }
+                  ]
+                }
+              },
+              {
+                "slug": "environment",
+                "badge": "Environment",
+                "title": "Protecting Nature and Greening Tomorrow",
+                "description": "We work towards a cleaner, greener and healthier environment for future generations through extensive reforestation, waste management, and climate education.",
+                "image": "/causes/environment.webp",
+                "about": {
+                  "eyebrow": "About This Cause",
+                  "title": "Restoring Ecosystems for Sustainable Living",
+                  "description": "Climate change and deforestation severely impact rural agriculture, water tables, and air quality. Our environmental mission drives massive tree-planting drives, rainwater harvesting reservoirs, and village-level organic farming guidance to revive natural biodiversity.",
+                  "image": "/gallery/gallery-3.webp"
+                },
+                "impact": {
+                  "eyebrow": "Our Impact So Far",
+                  "title": "Restoring Our Shared Natural World",
+                  "subtitle": "Every sapling planted and riverbank restored protects rural futures.",
+                  "items": [
+                    {
+                      "value": "25,000+",
+                      "label": "Saplings Planted",
+                      "icon": "graduation-cap"
+                    },
+                    {
+                      "value": "18+",
+                      "label": "Water Bodies Restored",
+                      "icon": "book-open"
+                    },
+                    {
+                      "value": "35+",
+                      "label": "Villages Solar-Empowered",
+                      "icon": "users"
+                    },
+                    {
+                      "value": "500+",
+                      "label": "Green Volunteers",
+                      "icon": "heart"
+                    }
+                  ]
+                },
+                "approach": {
+                  "eyebrow": "How We Make a Difference",
+                  "title": "Our Ecological Approach",
+                  "image": "/gallery/gallery-4.webp",
+                  "steps": [
+                    {
+                      "number": "01",
+                      "title": "Terrain Mapping",
+                      "description": "Identifying degraded soil and dry catchment areas in semi-arid districts."
+                    },
+                    {
+                      "number": "02",
+                      "title": "Sapling Drives",
+                      "description": "Cultivating native, drought-resistant trees with community youth groups."
+                    },
+                    {
+                      "number": "03",
+                      "title": "Water Conservation",
+                      "description": "Building check-dams and percolation ponds to restore ground water tables."
+                    },
+                    {
+                      "number": "04",
+                      "title": "Clean Village Drives",
+                      "description": "Introducing plastic-free zones and decentralized composting practices."
+                    }
+                  ]
+                }
+              },
+              {
+                "slug": "action",
+                "badge": "Action",
+                "title": "Immediate Relief and Community Action",
+                "description": "We take action through community programs, relief work and long-term initiatives to improve lives and uplift families in crisis.",
+                "image": "/causes/action.webp",
+                "about": {
+                  "eyebrow": "About This Cause",
+                  "title": "Rapid Response with Lasting Grassroots Impact",
+                  "description": "When crises hit—whether floods, extreme weather, or health emergencies—our on-ground volunteer network responds immediately with food, shelter, clean water, and medical essentials, transitioning swiftly into sustainable rehabilitation.",
+                  "image": "/gallery/gallery-5.webp"
+                },
+                "impact": {
+                  "eyebrow": "Our Impact So Far",
+                  "title": "Direct Action When It Matters Most",
+                  "subtitle": "Compassion in motion with zero delay in delivering vital humanitarian aid.",
+                  "items": [
+                    {
+                      "value": "15,000+",
+                      "label": "Emergency Meals Served",
+                      "icon": "heart"
+                    },
+                    {
+                      "value": "60+",
+                      "label": "Medical Aid Camps",
+                      "icon": "users"
+                    },
+                    {
+                      "value": "1,800+",
+                      "label": "Relief Kits Distributed",
+                      "icon": "book-open"
+                    },
+                    {
+                      "value": "50+",
+                      "label": "Crisis Zones Supported",
+                      "icon": "graduation-cap"
+                    }
+                  ]
+                },
+                "approach": {
+                  "eyebrow": "How We Make a Difference",
+                  "title": "Our Action Strategy",
+                  "image": "/gallery/gallery-7.webp",
+                  "steps": [
+                    {
+                      "number": "01",
+                      "title": "Rapid Assessment",
+                      "description": "Deploying scouts within hours of distress alerts to evaluate real needs."
+                    },
+                    {
+                      "number": "02",
+                      "title": "Resource Mobilization",
+                      "description": "Procuring essential rations, clean water, and hygiene kits from certified depots."
+                    },
+                    {
+                      "number": "03",
+                      "title": "Direct Distribution",
+                      "description": "Transparent, doorstep delivery to affected elders, women, and children."
+                    },
+                    {
+                      "number": "04",
+                      "title": "Rehabilitation Care",
+                      "description": "Providing financial guidance and rebuilding aid for family stability."
+                    }
+                  ]
+                }
+              },
+              {
+                "slug": "food-nutrition",
+                "badge": "Food & Nutrition",
+                "title": "Food for a Hunger-Free Nation",
+                "description": "Help us provide nutritious meals and essential rations to children, elderly and families in need across impoverished rural belts.",
+                "image": "/causes/action.webp",
+                "about": {
+                  "eyebrow": "About This Cause",
+                  "title": "Ensuring No Child Goes to Bed Hungry",
+                  "description": "Childhood malnutrition permanently stunts physical and cognitive potential. Our nutrition centers provide protein-rich midday meals and fortified cereals across village schools, ensuring every child grows healthy and ready to learn.",
+                  "image": "/gallery/gallery-8.webp"
+                },
+                "impact": {
+                  "eyebrow": "Our Impact So Far",
+                  "title": "Eliminating Malnutrition Step by Step",
+                  "subtitle": "Delivering wholesome nutrition to underprivileged families daily.",
+                  "items": [
+                    {
+                      "value": "50,000+",
+                      "label": "Balanced Meals Served",
+                      "icon": "heart"
+                    },
+                    {
+                      "value": "3,200+",
+                      "label": "Health Screenings",
+                      "icon": "users"
+                    },
+                    {
+                      "value": "45+",
+                      "label": "School Feeding Programs",
+                      "icon": "book-open"
+                    },
+                    {
+                      "value": "15+",
+                      "label": "Community Kitchens",
+                      "icon": "graduation-cap"
+                    }
+                  ]
+                },
+                "approach": {
+                  "eyebrow": "How We Make a Difference",
+                  "title": "Our Nutrition Model",
+                  "image": "/gallery/gallery-9.webp",
+                  "steps": [
+                    {
+                      "number": "01",
+                      "title": "Nutrition Screening",
+                      "description": "Measuring BMI, iron levels, and growth metrics in rural anganwadis."
+                    },
+                    {
+                      "number": "02",
+                      "title": "Nutrient-Dense Meals",
+                      "description": "Sourcing local millets, lentils, and fresh produce for hot daily meals."
+                    },
+                    {
+                      "number": "03",
+                      "title": "Mother Counseling",
+                      "description": "Training mothers on infant feeding hygiene and micronutrient enrichment."
+                    },
+                    {
+                      "number": "04",
+                      "title": "Sustained Monitoring",
+                      "description": "Quarterly medical follow-ups to track weight recovery and vital health."
+                    }
+                  ]
+                }
+              },
+              {
+                "slug": "women-empowerment",
+                "badge": "Women Empowerment",
+                "title": "Empowering Women for Self-Reliance",
+                "description": "Support skill development, vocational training and self-reliance programs for rural women to build independent livelihoods.",
+                "image": "/gallery/gallery-6.webp",
+                "about": {
+                  "eyebrow": "About This Cause",
+                  "title": "Transforming Families Through Female Leadership",
+                  "description": "When a woman earns, her entire family benefits with better health, schooling, and living standards. We provide certified training in tailoring, handicrafts, digital literacy, and micro-business management, paired with interest-free seed capital.",
+                  "image": "/gallery/gallery-10.webp"
+                },
+                "impact": {
+                  "eyebrow": "Our Impact So Far",
+                  "title": "Women Leading Change Across Villages",
+                  "subtitle": "Creating independent female entrepreneurs and community leaders.",
+                  "items": [
+                    {
+                      "value": "2,400+",
+                      "label": "Women Trained",
+                      "icon": "users"
+                    },
+                    {
+                      "value": "350+",
+                      "label": "Micro-Businesses Launched",
+                      "icon": "graduation-cap"
+                    },
+                    {
+                      "value": "80+",
+                      "label": "Self-Help Groups",
+                      "icon": "book-open"
+                    },
+                    {
+                      "value": "95%",
+                      "label": "Income Improvement",
+                      "icon": "heart"
+                    }
+                  ]
+                },
+                "approach": {
+                  "eyebrow": "How We Make a Difference",
+                  "title": "Our Empowerment Pathway",
+                  "image": "/gallery/gallery-6.webp",
+                  "steps": [
+                    {
+                      "number": "01",
+                      "title": "Skill Assessment",
+                      "description": "Discovering traditional craft inclinations and market demands."
+                    },
+                    {
+                      "number": "02",
+                      "title": "Vocational Training",
+                      "description": "Hands-on courses in textile stitching, food processing, and computing."
+                    },
+                    {
+                      "number": "03",
+                      "title": "Seed Capital & Tools",
+                      "description": "Providing sewing machines, production supplies, and micro-loan connections."
+                    },
+                    {
+                      "number": "04",
+                      "title": "Market Linkages",
+                      "description": "Connecting self-help artisans to fair-trade urban exhibitions and e-commerce."
+                    }
+                  ]
+                }
+              }
+            ],
             "stats": {
               "items": [
                 {
@@ -169,7 +928,7 @@
               ]
             },
             "testimonials": {
-              "image": "/testimonials/teacher-storytime.png",
+              "image": "/testimonials/teacher-storytime.webp",
               "image_alt": "Teacher volunteer reading storybook to children in outdoor library",
               "items": [
                 {
@@ -191,7 +950,783 @@
                   "role": "Youth Volunteer"
                 }
               ]
-            }
+            },
+            "breadcrumb": {
+              "title": "About Us",
+              "path": "Home / About Us",
+              "image": "/img/banner.webp",
+              "bottom_shape": "/img/banner-bottom.webp"
+            },
+            "our_story": {
+              "title": "OUR STORY",
+              "paragraphs": [
+                "Demonstrated by living our core values: compassion, growth, courage to act, responsibility, belonging, curiosity. You can see them cultivated in every experience for students, families and staff.",
+                "Community is everything. It's who we are and how things get done. Everyone here is motivated by a deep commitment to making sure each child and family feels welcome and included. When everyone feels like they belong, we are stronger and smarter together. We're a community driven to make the world a better place—starting in our own backyard."
+              ],
+              "image": "/about/story.webp",
+              "image_alt": "Young girls writing diligently in notebooks in classroom",
+              "gallery": [
+                {
+                  "id": "01",
+                  "image": "/about/gallery-1.webp",
+                  "alt": "Three cheerful boys smiling together"
+                },
+                {
+                  "id": "02",
+                  "image": "/about/gallery-2.webp",
+                  "alt": "Two young girls hugging happily"
+                },
+                {
+                  "id": "03",
+                  "image": "/about/gallery-3.webp",
+                  "alt": "Volunteers distributing meals and support"
+                }
+              ]
+            },
+            "team": {
+              "eyebrow": "OUR TEAM",
+              "title": "Meet Our Dedicated Team",
+              "description": "Passionate individuals working together to create a healthier, safer and brighter future for communities. Our team brings expertise, compassion and commitment to every initiative we undertake.",
+              "members": [
+                {
+                  "id": "01",
+                  "name": "May Johnson",
+                  "role": "Executive Director",
+                  "image": "/team/may-johnson.webp",
+                  "socials": [
+                    {
+                      "name": "LinkedIn",
+                      "href": "https://linkedin.com",
+                      "icon": "linkedin"
+                    },
+                    {
+                      "name": "Instagram",
+                      "href": "https://instagram.com",
+                      "icon": "instagram"
+                    }
+                  ]
+                },
+                {
+                  "id": "02",
+                  "name": "Daniel Kim",
+                  "role": "Campaign Director",
+                  "image": "/team/daniel-kim.webp",
+                  "socials": [
+                    {
+                      "name": "LinkedIn",
+                      "href": "https://linkedin.com",
+                      "icon": "linkedin"
+                    },
+                    {
+                      "name": "Instagram",
+                      "href": "https://instagram.com",
+                      "icon": "instagram"
+                    }
+                  ]
+                },
+                {
+                  "id": "03",
+                  "name": "Sofia Alvarez",
+                  "role": "Program Manager",
+                  "image": "/team/sofia-alvarez.webp",
+                  "socials": [
+                    {
+                      "name": "LinkedIn",
+                      "href": "https://linkedin.com",
+                      "icon": "linkedin"
+                    },
+                    {
+                      "name": "Instagram",
+                      "href": "https://instagram.com",
+                      "icon": "instagram"
+                    }
+                  ]
+                },
+                {
+                  "id": "04",
+                  "name": "Liam Carter",
+                  "role": "Communications Lead",
+                  "image": "/team/liam-carter.webp",
+                  "socials": [
+                    {
+                      "name": "LinkedIn",
+                      "href": "https://linkedin.com",
+                      "icon": "linkedin"
+                    },
+                    {
+                      "name": "Instagram",
+                      "href": "https://instagram.com",
+                      "icon": "instagram"
+                    }
+                  ]
+                },
+                {
+                  "id": "05",
+                  "name": "Aisha Rahma",
+                  "role": "Development Lead",
+                  "image": "/team/aisha-rahma.webp",
+                  "socials": [
+                    {
+                      "name": "LinkedIn",
+                      "href": "https://linkedin.com",
+                      "icon": "linkedin"
+                    },
+                    {
+                      "name": "Instagram",
+                      "href": "https://instagram.com",
+                      "icon": "instagram"
+                    }
+                  ]
+                },
+                {
+                  "id": "06",
+                  "name": "Noah Williams",
+                  "role": "Community Lead",
+                  "image": "/team/noah-williams.webp",
+                  "socials": [
+                    {
+                      "name": "LinkedIn",
+                      "href": "https://linkedin.com",
+                      "icon": "linkedin"
+                    },
+                    {
+                      "name": "Instagram",
+                      "href": "https://instagram.com",
+                      "icon": "instagram"
+                    }
+                  ]
+                }
+              ]
+            },
+            "gallery": {
+              "eyebrow": "OUR GALLERY",
+              "title": "Moments That Make a Difference",
+              "description": "Explore our journey through images — from community support and volunteer efforts to the lives we've touched. Every photo tells a story of hope, kindness and positive change.",
+              "categories": [
+                "All",
+                "Events",
+                "Volunteers",
+                "Children",
+                "Community",
+                "Medical"
+              ],
+              "load_more_button": {
+                "text": "Load More",
+                "icon": "refresh-cw"
+              },
+              "items": [
+                {
+                  "id": "01",
+                  "title": "Volunteer Compassion",
+                  "category": "Volunteers",
+                  "categories": [
+                    "Volunteers",
+                    "Community"
+                  ],
+                  "image": "/gallery/gallery-1.webp",
+                  "column": 1,
+                  "flex": 147,
+                  "aspect": "115/147"
+                },
+                {
+                  "id": "02",
+                  "title": "Bright Young Smiles",
+                  "category": "Children",
+                  "categories": [
+                    "Children",
+                    "Community"
+                  ],
+                  "image": "/gallery/gallery-2.webp",
+                  "column": 1,
+                  "flex": 78,
+                  "aspect": "115/78"
+                },
+                {
+                  "id": "03",
+                  "title": "Elderly Care Initiative",
+                  "category": "Community",
+                  "categories": [
+                    "Community"
+                  ],
+                  "image": "/gallery/gallery-3.webp",
+                  "column": 1,
+                  "flex": 114,
+                  "aspect": "115/114"
+                },
+                {
+                  "id": "04",
+                  "title": "Food Relief Package Handout",
+                  "category": "Events",
+                  "categories": [
+                    "Events",
+                    "Volunteers",
+                    "Community"
+                  ],
+                  "image": "/gallery/gallery-4.webp",
+                  "column": 1,
+                  "flex": 72,
+                  "aspect": "115/72"
+                },
+                {
+                  "id": "05",
+                  "title": "Tree Plantation Drive",
+                  "category": "Events",
+                  "categories": [
+                    "Events",
+                    "Volunteers"
+                  ],
+                  "image": "/gallery/gallery-5.webp",
+                  "column": 2,
+                  "flex": 135,
+                  "aspect": "105/135"
+                },
+                {
+                  "id": "06",
+                  "title": "Medical Consultation Camp",
+                  "category": "Medical",
+                  "categories": [
+                    "Medical",
+                    "Community"
+                  ],
+                  "image": "/gallery/gallery-6.webp",
+                  "column": 2,
+                  "flex": 101,
+                  "aspect": "105/101"
+                },
+                {
+                  "id": "07",
+                  "title": "Education For Every Child",
+                  "category": "Children",
+                  "categories": [
+                    "Children",
+                    "Community"
+                  ],
+                  "image": "/gallery/gallery-7.webp",
+                  "column": 2,
+                  "flex": 94,
+                  "aspect": "105/94"
+                },
+                {
+                  "id": "08",
+                  "title": "Sunset Volunteer Summit",
+                  "category": "Volunteers",
+                  "categories": [
+                    "Volunteers",
+                    "Events"
+                  ],
+                  "image": "/gallery/gallery-8.webp",
+                  "column": 2,
+                  "flex": 83,
+                  "aspect": "105/83"
+                },
+                {
+                  "id": "09",
+                  "title": "Childhood Warmth & Protection",
+                  "category": "Children",
+                  "categories": [
+                    "Children"
+                  ],
+                  "image": "/gallery/gallery-9.webp",
+                  "column": 3,
+                  "flex": 104,
+                  "aspect": "104/104"
+                },
+                {
+                  "id": "10",
+                  "title": "Emergency Ration Delivery",
+                  "category": "Volunteers",
+                  "categories": [
+                    "Volunteers",
+                    "Events"
+                  ],
+                  "image": "/gallery/gallery-10.webp",
+                  "column": 3,
+                  "flex": 146,
+                  "aspect": "104/146"
+                },
+                {
+                  "id": "11",
+                  "title": "Field Shelter Medical Aid",
+                  "category": "Medical",
+                  "categories": [
+                    "Medical",
+                    "Children",
+                    "Volunteers"
+                  ],
+                  "image": "/gallery/gallery-11.webp",
+                  "column": 3,
+                  "flex": 77,
+                  "aspect": "104/77"
+                },
+                {
+                  "id": "12",
+                  "title": "Community Coordinator on Duty",
+                  "category": "Community",
+                  "categories": [
+                    "Volunteers",
+                    "Community"
+                  ],
+                  "image": "/gallery/gallery-12.webp",
+                  "column": 3,
+                  "flex": 90,
+                  "aspect": "104/90"
+                },
+                {
+                  "id": "13",
+                  "title": "Senior Care Support",
+                  "category": "Community",
+                  "categories": [
+                    "Volunteers",
+                    "Community"
+                  ],
+                  "image": "/gallery/gallery-13.webp",
+                  "column": 4,
+                  "flex": 132,
+                  "aspect": "114/132"
+                },
+                {
+                  "id": "14",
+                  "title": "Park Eco-Clean Campaign",
+                  "category": "Events",
+                  "categories": [
+                    "Events",
+                    "Volunteers"
+                  ],
+                  "image": "/gallery/gallery-14.webp",
+                  "column": 4,
+                  "flex": 119,
+                  "aspect": "114/119"
+                },
+                {
+                  "id": "15",
+                  "title": "Joyful Outdoor Moments",
+                  "category": "Children",
+                  "categories": [
+                    "Children"
+                  ],
+                  "image": "/gallery/gallery-15.webp",
+                  "column": 4,
+                  "flex": 94,
+                  "aspect": "114/94"
+                },
+                {
+                  "id": "16",
+                  "title": "Nurturing Green Life",
+                  "category": "Events",
+                  "categories": [
+                    "Events",
+                    "Community"
+                  ],
+                  "image": "/gallery/gallery-16.webp",
+                  "column": 4,
+                  "flex": 69,
+                  "aspect": "114/69"
+                }
+              ]
+            },
+            "contact": {
+              "eyebrow": "CONTACT US",
+              "title_prefix": "Get in Touch ",
+              "title_highlight": "with Us",
+              "description": "We'd love to hear from you. Whether you have a question, want to support our cause, or are interested in volunteering, our team is here to help.",
+              "cards": [
+                {
+                  "id": "location",
+                  "title": "Our Location",
+                  "icon": "map-pin",
+                  "details": [
+                    "123 Education Lane,",
+                    "New York, NY 10001"
+                  ]
+                },
+                {
+                  "id": "phone",
+                  "title": "Phone Number",
+                  "icon": "phone",
+                  "details": [
+                    "+100000000000"
+                  ]
+                },
+                {
+                  "id": "email",
+                  "title": "Email Address",
+                  "icon": "mail",
+                  "details": [
+                    "info@xyz.com"
+                  ]
+                }
+              ],
+              "form": {
+                "eyebrow": "SEND US A MESSAGE —",
+                "title_prefix": "Contact ",
+                "title_highlight": "Form",
+                "description": "Fill out the form below and our team will get back to you as soon as possible.",
+                "inputs": {
+                  "name": {
+                    "label": "Full Name",
+                    "placeholder": "Full Name *"
+                  },
+                  "email": {
+                    "label": "Email Address",
+                    "placeholder": "Email Address *"
+                  },
+                  "phone": {
+                    "label": "Phone Number",
+                    "placeholder": "Phone Number *"
+                  },
+                  "subject": {
+                    "label": "Subject",
+                    "placeholder": "Subject *",
+                    "options": [
+                      "General Inquiry",
+                      "Donation & Sponsorship",
+                      "Volunteer Opportunities",
+                      "CSR & Corporate Partnership",
+                      "Media & Press",
+                      "Emergency Assistance"
+                    ]
+                  },
+                  "message": {
+                    "label": "Your Message",
+                    "placeholder": "Your Message *"
+                  }
+                },
+                "submit_button": {
+                  "text": "Send Message",
+                  "icon": "arrow-right"
+                }
+              },
+              "banner": {
+                "image": "/contact/contact-banner.webp",
+                "quote": "Together we can create brighter futures for stronger communities."
+              },
+              "map": {
+                "embed_url": "https://maps.google.com/maps?q=123+Education+Lane,+New+York,+NY+10001&t=&z=15&ie=UTF8&iwloc=&output=embed",
+                "location_name": "123 Education Lane",
+                "address": "New York, NY 10001",
+                "directions_url": "https://www.google.com/maps/dir/?api=1&destination=123+Education+Lane,+New+York,+NY+10001"
+              }
+            },
+            "faq": {
+              "eyebrow": "FAQ'S SECTION —",
+              "title_prefix": "Frequently Asked ",
+              "title_highlight": "Questions",
+              "description": "Find answers to the most common questions about our work, donations, volunteering opportunities, and how you can make a difference with Helping Hands.",
+              "image": "/img/faq.webp",
+              "image_alt": "Helping Hands Volunteer with Child",
+              "items": [
+                {
+                  "id": "faq-1",
+                  "number": "01",
+                  "question": "How will my donation be used?",
+                  "answer": "Your donation directly supports our programs, including education, healthcare, food distribution, and community development. We ensure full transparency and share regular impact reports so you can see the difference your support makes."
+                },
+                {
+                  "id": "faq-2",
+                  "number": "02",
+                  "question": "I don't have much money. Can I help?",
+                  "answer": "Every contribution counts, no matter the size! You can also support us by volunteering your time, sharing our campaigns on social media, or participating in community events to raise awareness."
+                },
+                {
+                  "id": "faq-3",
+                  "number": "03",
+                  "question": "How frequently do you update your campaign progress?",
+                  "answer": "We provide monthly detailed impact reports and real-time campaign updates on our website and social channels so donors can see the direct results of their generosity."
+                },
+                {
+                  "id": "faq-4",
+                  "number": "04",
+                  "question": "How do I choose a long-term care facility?",
+                  "answer": "Our community outreach team offers guidance, verified partner directories, and personalized assistance to help families evaluate care facilities based on quality, safety, and specific care requirements."
+                },
+                {
+                  "id": "faq-5",
+                  "number": "05",
+                  "question": "Can I volunteer with Helping Hands?",
+                  "answer": "Yes! We welcome passionate volunteers for teaching, medical relief camps, food distribution, and administrative support. You can easily register through our Volunteer form on the website."
+                },
+                {
+                  "id": "faq-6",
+                  "number": "06",
+                  "question": "Is my personal information secure?",
+                  "answer": "Absolutely. We use industry-standard 256-bit encryption and strict data privacy protocols. We never sell, rent, or share your personal details or payment data with third parties."
+                }
+              ]
+            },
+            "blogs": {
+              "eyebrow": "OUR BLOG",
+              "title": "Our Blog",
+              "recent_posts_heading": "Recent Post",
+              "items": [
+                {
+                  "id": "01",
+                  "slug": "learn-exactly-how-we-made-event",
+                  "title": "Learn exactly how we made event",
+                  "category": "Education",
+                  "date": "December 30, 2025",
+                  "comments_count": "No Comments",
+                  "author": "Salim Rana",
+                  "image": "/blog/4.webp",
+                  "excerpt": "Diam volutpat commodo sed egestas egestas fringilla phasellus faucibus scelerisque. Et ligula ullamcorper malesuada proin libero nunc. Quis vel eros donec ac odio tempor. Cursus in hac habitasse platea. Phasellus egestas tellus rutrum tellus pellentesque eu non diam.",
+                  "href": "/blog/learn-exactly-how-we-made-event"
+                },
+                {
+                  "id": "02",
+                  "slug": "insights-news-and-success-stories",
+                  "title": "Insights, News, and success stories",
+                  "category": "Environment",
+                  "date": "December 30, 2025",
+                  "comments_count": "No Comments",
+                  "author": "Priya Sharma",
+                  "image": "/blog/sapling.webp",
+                  "excerpt": "Diam volutpat commodo sed egestas egestas fringilla phasellus faucibus scelerisque. Et ligula ullamcorper malesuada proin libero nunc. Quis vel eros donec ac odio tempor. Cursus in hac habitasse platea. Phasellus egestas tellus rutrum tellus pellentesque eu non diam.",
+                  "href": "/blog/insights-news-and-success-stories"
+                },
+                {
+                  "id": "03",
+                  "slug": "give-african-childrens-a-good-education",
+                  "title": "Give african childrens a good education",
+                  "category": "Education",
+                  "date": "December 30, 2025",
+                  "comments_count": "No Comments",
+                  "author": "Amina Yusuf",
+                  "image": "/blog/children.webp",
+                  "excerpt": "Diam volutpat commodo sed egestas egestas fringilla phasellus faucibus scelerisque. Et ligula ullamcorper malesuada proin libero nunc. Quis vel eros donec ac odio tempor. Cursus in hac habitasse platea. Phasellus egestas tellus rutrum tellus pellentesque eu non diam.",
+                  "href": "/blog/give-african-childrens-a-good-education"
+                },
+                {
+                  "id": "04",
+                  "slug": "rural-healthcare-and-relief-initiative",
+                  "title": "Rural healthcare and emergency relief initiative",
+                  "category": "Healthcare",
+                  "date": "December 28, 2025",
+                  "comments_count": "No Comments",
+                  "author": "Dr. Vikram Patel",
+                  "image": "/blog/1.webp",
+                  "excerpt": "Providing essential medical checkups, free prescription medicines, and emergency nutrition packs to families in remote and flood-affected rural villages.",
+                  "href": "/blog/rural-healthcare-and-relief-initiative"
+                },
+                {
+                  "id": "05",
+                  "slug": "volunteer-voices-transforming-lives-together",
+                  "title": "Volunteer voices: Transforming lives together",
+                  "category": "Community",
+                  "date": "December 26, 2025",
+                  "comments_count": "No Comments",
+                  "author": "Neha Sengupta",
+                  "image": "/blog/2.webp",
+                  "excerpt": "Behind every meal served and classroom built is a dedicated team of volunteers united by empathy, service, and the drive to build stronger communities.",
+                  "href": "/blog/volunteer-voices-transforming-lives-together"
+                },
+                {
+                  "id": "06",
+                  "slug": "building-sustainable-futures-for-youth",
+                  "title": "Building sustainable futures for youth and families",
+                  "category": "Advocacy",
+                  "date": "December 24, 2025",
+                  "comments_count": "No Comments",
+                  "author": "Arjun Nair",
+                  "image": "/blog/3.webp",
+                  "excerpt": "Vocational skills training, digital literacy workshops, and youth leadership camps empowering young change-makers across semi-urban clusters.",
+                  "href": "/blog/building-sustainable-futures-for-youth"
+                }
+              ],
+              "recent_posts": [
+                {
+                  "slug": "learn-exactly-how-we-made-event",
+                  "title": "Learn exactly how we made event",
+                  "date": "December 30, 2025",
+                  "image": "/blog/4.webp",
+                  "href": "/blog/learn-exactly-how-we-made-event"
+                },
+                {
+                  "slug": "insights-news-and-success-stories",
+                  "title": "Insights, News, and success stories",
+                  "date": "December 30, 2025",
+                  "image": "/blog/sapling.webp",
+                  "href": "/blog/insights-news-and-success-stories"
+                },
+                {
+                  "slug": "give-african-childrens-a-good-education",
+                  "title": "Give african childrens a good education",
+                  "date": "December 30, 2025",
+                  "image": "/blog/children.webp",
+                  "href": "/blog/give-african-childrens-a-good-education"
+                },
+                {
+                  "slug": "rural-healthcare-and-relief-initiative",
+                  "title": "Rural healthcare and emergency relief initiative",
+                  "date": "December 28, 2025",
+                  "image": "/blog/1.webp",
+                  "href": "/blog/rural-healthcare-and-relief-initiative"
+                },
+                {
+                  "slug": "volunteer-voices-transforming-lives-together",
+                  "title": "Volunteer voices: Transforming lives together",
+                  "date": "December 26, 2025",
+                  "image": "/blog/2.webp",
+                  "href": "/blog/volunteer-voices-transforming-lives-together"
+                }
+              ]
+            },
+            "blog_details": [
+              {
+                "slug": "learn-exactly-how-we-made-event",
+                "category": "Education",
+                "badge": "Education",
+                "title": "Learn exactly how we made event",
+                "author": "Salim Rana",
+                "date": "December 30, 2025",
+                "comments_count": "No Comments",
+                "hero_image": "/blog/detail-hero.webp",
+                "lead": "Discover how our recent community event brought people together, created awareness, and made a real impact in the lives of those who need it most.",
+                "paragraphs": [
+                  "At Helping Hands, we believe that real change begins with people coming together. Our recent community event was a beautiful example of how collective efforts can create meaningful impact. The event was organized to provide essential supplies, raise awareness about education, and support underprivileged families in the local community.",
+                  "Volunteers from different backgrounds joined hands to make the event successful. From distributing food and hygiene kits to organizing fun learning activities for children, every moment reflected compassion, dedication, and the spirit of humanity."
+                ],
+                "impact_heading": "The Impact",
+                "impact_text": "The event not only provided immediate relief but also created long-term awareness about the importance of education, health, and community support. We saw smiles, hope, and an overwhelming sense of gratitude from the families we served. This inspires us to do even more in the future.",
+                "quote": {
+                  "text": "“This event gave us hope and showed that there are still people who care. Thank you, Helping Hands, for standing with our community.”",
+                  "author": "— A LOCAL COMMUNITY MEMBER"
+                },
+                "inset_images": [
+                  "/blog/4.webp",
+                  "/causes/education-books.webp"
+                ],
+                "closing_text": "We extend our heartfelt thanks to all our volunteers, donors, and supporters who made this event possible. Together, we can continue to build stronger, healthier, and more compassionate communities."
+              },
+              {
+                "slug": "insights-news-and-success-stories",
+                "category": "Environment",
+                "badge": "Environment",
+                "title": "Insights, News, and success stories",
+                "author": "Priya Sharma",
+                "date": "December 30, 2025",
+                "comments_count": "No Comments",
+                "hero_image": "/blog/sapling.webp",
+                "lead": "How community-driven environmental restoration and green initiatives are transforming semi-arid villages into sustainable, thriving ecosystems.",
+                "paragraphs": [
+                  "Restoring degraded land and nurturing young saplings is more than just planting trees — it is about reviving clean groundwater, protecting agricultural livelihoods, and building climate resilience for future generations.",
+                  "Our teams partnered with local youth groups and school volunteers to plant native saplings and install rainwater percolation pits across three rural clusters. Over 500 volunteers participated across four weekends."
+                ],
+                "impact_heading": "The Environmental Impact",
+                "impact_text": "Over 25,000 native trees have been planted with a 92% survival rate. The local groundwater level has noticeably risen, providing reliable well water to over 1,500 rural households.",
+                "quote": {
+                  "text": "“When we plant trees together, we plant hope for our children. Our barren fields are turning green again thanks to Helping Hands.”",
+                  "author": "— RAMESH KUMAR, VILLAGE ELDER"
+                },
+                "inset_images": [
+                  "/gallery/gallery-3.webp",
+                  "/blog/3.webp"
+                ],
+                "closing_text": "Environmental protection requires sustained, everyday dedication. We invite you to join our weekend green drives and become a guardian of nature."
+              },
+              {
+                "slug": "give-african-childrens-a-good-education",
+                "category": "Education",
+                "badge": "Education",
+                "title": "Give african childrens a good education",
+                "author": "Amina Yusuf",
+                "date": "December 30, 2025",
+                "comments_count": "No Comments",
+                "hero_image": "/blog/children.webp",
+                "lead": "Empowering underprivileged children with quality learning materials, school infrastructure, and foundational literacy skills.",
+                "paragraphs": [
+                  "Access to quality education is the most powerful catalyst to break cycles of poverty. When a child learns to read, write, and think critically, their entire future opens up to endless opportunities.",
+                  "Through our Global Hope initiative, we provided thousands of textbooks, classroom desks, and trained community teachers to ensure no child is left behind due to economic hardship."
+                ],
+                "impact_heading": "The Educational Milestones",
+                "impact_text": "Over 3,000 children are now attending school regularly with complete learning kits and daily nutrition support, raising school retention rates by 48%.",
+                "quote": {
+                  "text": "“Going to school every day with my own books was my biggest dream. Today, I want to study hard and become a teacher myself.”",
+                  "author": "— AMINA, 5TH GRADE STUDENT"
+                },
+                "inset_images": [
+                  "/causes/education-study.webp",
+                  "/causes/education-books.webp"
+                ],
+                "closing_text": "Every child deserves a desk, a book, and a caring teacher. Your donation directly funds classroom supplies and school meals for children in need."
+              },
+              {
+                "slug": "rural-healthcare-and-relief-initiative",
+                "category": "Healthcare",
+                "badge": "Healthcare",
+                "title": "Rural healthcare and emergency relief initiative",
+                "author": "Dr. Vikram Patel",
+                "date": "December 28, 2025",
+                "comments_count": "No Comments",
+                "hero_image": "/blog/1.webp",
+                "lead": "Bringing essential medical consultations, free life-saving medicines, and nutritional therapy to underserved remote villages.",
+                "paragraphs": [
+                  "Quality healthcare should be a fundamental human right, not a privilege reserved for metropolitan cities. In many isolated rural areas, the nearest clinic is miles away over rough terrain.",
+                  "Our mobile health units travel directly to doorstep communities, conducting health screenings, prenatal checkups, pediatric consultations, and providing free diagnostic tests."
+                ],
+                "impact_heading": "The Healthcare Reach",
+                "impact_text": "Over 8,400 patients received free consultations and medications across 42 villages. We also conducted 15 maternal healthcare workshops for young mothers.",
+                "quote": {
+                  "text": "“The doctors didn't just give us medicines; they listened to our pain and treated us with deep dignity and care.”",
+                  "author": "— SUNITA DEVI, BENEFICIARY"
+                },
+                "inset_images": [
+                  "/blog/4.webp",
+                  "/gallery/gallery-1.webp"
+                ],
+                "closing_text": "Healthy communities build strong nations. We are actively expanding our mobile clinic fleet to reach even more families across vulnerable terrain."
+              },
+              {
+                "slug": "volunteer-voices-transforming-lives-together",
+                "category": "Community",
+                "badge": "Community",
+                "title": "Volunteer voices: Transforming lives together",
+                "author": "Neha Sengupta",
+                "date": "December 26, 2025",
+                "comments_count": "No Comments",
+                "hero_image": "/blog/2.webp",
+                "lead": "Meet the passionate changemakers who dedicate their weekends and energy to making an enduring difference in community relief.",
+                "paragraphs": [
+                  "Volunteering is the beating heart of Helping Hands. From students organizing textbook donation drives to corporate professionals helping with logistics and food packing, every hand matters.",
+                  "Our volunteer network has grown into a compassionate family of over 1,200 active members who turn empathy into organized grassroots action."
+                ],
+                "impact_heading": "The Volunteer Footprint",
+                "impact_text": "More than 20,000 volunteer hours contributed this year alone across relief camps, teaching centers, and community kitchens.",
+                "quote": {
+                  "text": "“Volunteering gave my life real meaning. Seeing a child smile because of something you built is the greatest reward in the world.”",
+                  "author": "— RAHUL VERMA, VOLUNTEER LEAD"
+                },
+                "inset_images": [
+                  "/about/story.webp",
+                  "/gallery/gallery-5.webp"
+                ],
+                "closing_text": "Anyone can make a difference. Sign up for our next volunteer orientation and be part of something genuinely life-changing."
+              },
+              {
+                "slug": "building-sustainable-futures-for-youth",
+                "category": "Advocacy",
+                "badge": "Advocacy",
+                "title": "Building sustainable futures for youth and families",
+                "author": "Arjun Nair",
+                "date": "December 24, 2025",
+                "comments_count": "No Comments",
+                "hero_image": "/blog/3.webp",
+                "lead": "Equipping underprivileged youth with vocational skills, financial literacy, and career mentorship for lifelong self-reliance.",
+                "paragraphs": [
+                  "True empowerment means giving young people the tools to generate steady income and support their families with self-respect and confidence.",
+                  "Our youth development centers provide hands-on vocational courses in solar technician training, computer programming, digital marketing, and spoken English."
+                ],
+                "impact_heading": "The Economic Outcomes",
+                "impact_text": "Over 650 youth graduated from our vocational skill courses with an 84% formal job placement rate, tripling average household incomes.",
+                "quote": {
+                  "text": "“I now work as a solar technician and support my younger sisters' schooling. Helping Hands changed our entire family's future.”",
+                  "author": "— KARTHIK, VOCATIONAL ACADEMY GRADUATE"
+                },
+                "inset_images": [
+                  "/gallery/gallery-6.webp",
+                  "/causes/education.webp"
+                ],
+                "closing_text": "Investing in youth is investing in our collective future. Join us in building sustainable pathways out of poverty."
+              }
+            ]
           }
         }
       }

@@ -2,7 +2,7 @@
 
 import { useEffect, useRef, useState } from 'react';
 import { motion, useInView } from 'framer-motion';
-import type { StatsSectionData, StatItem } from '../../types';
+import type { StatsSectionData, StatItem } from '@/components/types';
 
 interface StatsProps {
   data: StatsSectionData;

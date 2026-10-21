@@ -27,7 +27,7 @@ body {
   font-family: var(--font-sans), 'Nunito', sans-serif;
   background-color: #ffffff;
   color: #1a2e22;
-  overflow-x: hidden;
+  overflow-x: clip;
 }
 
 /* Custom Utilities */
@@ -90,4 +90,30 @@ body {
 
 .motorsport-nav-li {
   transition: opacity 0.35s cubic-bezier(0.7, 0, 0.3, 1);
+}
+
+/* Gallery 4-Column Masonry Alignment: Perfectly Level Bottom Row on Desktop */
+@media (min-width: 1024px) {
+  .gallery-col-desktop {
+    aspect-ratio: 110 / 430 !important;
+    height: auto !important;
+  }
+  .gallery-card-flex {
+    flex: var(--card-flex, 100) 1 0px !important;
+    min-height: 0 !important;
+    height: auto !important;
+    aspect-ratio: auto !important;
+  }
+}
+
+@media (max-width: 1023px) {
+  .gallery-col-desktop {
+    aspect-ratio: auto !important;
+    height: auto !important;
+  }
+  .gallery-card-flex {
+    aspect-ratio: var(--card-aspect, 4/3) !important;
+    height: auto !important;
+    flex: none !important;
+  }
 }

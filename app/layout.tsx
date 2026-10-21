@@ -1,7 +1,7 @@
 import type { Metadata } from 'next';
 import { Nunito, Playfair_Display, Barlow_Condensed } from 'next/font/google';
 import './globals.css';
-import { common, pages } from '@/types';
+import { common, pages } from '@/components/types';
 
 const nunito = Nunito({
   subsets: ['latin'],

@@ -4,7 +4,7 @@ import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { Mail, Phone } from 'lucide-react';
-import type { HeaderData } from '../../types';
+import type { HeaderData } from '@/components/types';
 
 interface HeaderProps {
   data: HeaderData;
@@ -66,7 +66,7 @@ export default function Header({ data }: HeaderProps) {
             aria-label={data.logo_text || 'Helping Hands Home'}
           >
             <Image
-              src={data.logo || '/logo/logo.png'}
+              src={data.logo || '/logo/logo.webp'}
               alt={data.logo_text ? `${data.logo_text} - ${data.logo_subtext}` : 'Helping Hands'}
               width={240}
               height={56}

@@ -3,7 +3,7 @@
 import Link from 'next/link';
 import Image from 'next/image';
 import { Mail, Phone, MapPin } from 'lucide-react';
-import type { FooterData } from '../../types';
+import type { FooterData } from '@/components/types';
 
 interface FooterProps {
   data: FooterData;
@@ -18,7 +18,7 @@ export default function Footer({ data }: FooterProps) {
         <div className="flex flex-col items-center justify-center text-center">
           <Link href="/" className="inline-flex items-center hover:opacity-90 transition-opacity">
             <Image
-              src={data.logo || '/logo/logo.png'}
+              src={data.logo || '/logo/logo.webp'}
               alt={data.logo_text || 'Helping Hands'}
               width={340}
               height={140}
@@ -103,8 +103,8 @@ export default function Footer({ data }: FooterProps) {
                 <MapPin className="h-4 w-4" />
               </span>
               <div className="text-[13.5px] sm:text-[14px] font-normal text-[#1a2e22] text-left leading-tight">
-                <span className="block">{data.contact_info.address_line1 || '123, Green Park,'}</span>
-                <span className="block">{data.contact_info.address_line2 || data.contact_info.address || 'New Delhi, India - 110016'}</span>
+                <span className="block">{data.contact_info.address_line1 || '123 Education Lane,'}</span>
+                <span className="block">{data.contact_info.address_line2 || data.contact_info.address || 'New York, NY 10001'}</span>
               </div>
             </div>
           </div>

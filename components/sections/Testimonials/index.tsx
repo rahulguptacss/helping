@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import type { TestimonialsSectionData } from '../../types';
+import type { TestimonialsSectionData } from '@/components/types';
 
 interface TestimonialsProps {
   data: TestimonialsSectionData;
@@ -52,7 +52,7 @@ export default function Testimonials({ data }: TestimonialsProps) {
               <motion.img
                 whileHover={{ scale: 1.02 }}
                 transition={{ duration: 0.5, ease: 'easeOut' }}
-                src={data.image || '/testimonials/teacher-storytime.png'}
+                src={data.image || '/testimonials/teacher-storytime.webp'}
                 alt={data.image_alt || 'Teacher volunteer reading storybook to children'}
                 className="h-full w-full object-cover object-center rounded-none"
               />

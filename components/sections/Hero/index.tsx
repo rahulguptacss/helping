@@ -3,7 +3,7 @@
 import Link from 'next/link';
 import { motion } from 'framer-motion';
 import { Heart } from 'lucide-react';
-import type { HeroSectionData } from '../../types';
+import type { HeroSectionData } from '@/components/types';
 
 interface HeroProps {
   data: HeroSectionData;
@@ -62,7 +62,7 @@ export default function Hero({ data }: HeroProps) {
             </div>
           </div>
 
-          {/* Right Column: Hero Photo of Smiling Children (/hero/hero.png) */}
+          {/* Right Column: Hero Photo of Smiling Children (/hero/hero.webp) */}
           <div className="relative w-full aspect-[4/5] sm:aspect-[4/5] lg:aspect-auto lg:h-full lg:col-span-5 overflow-hidden flex items-center justify-center bg-[#017949]">
             <motion.div
               initial={{ opacity: 0 }}
@@ -71,7 +71,7 @@ export default function Hero({ data }: HeroProps) {
               className="h-full w-full"
             >
               <img
-                src={data.image || '/hero/hero.png'}
+                src={data.image || '/hero/hero.webp'}
                 alt={data.image_alt || 'Smiling Children'}
                 className="h-full w-full object-cover object-center"
               />
