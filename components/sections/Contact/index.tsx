@@ -25,14 +25,7 @@ export default function Contact({ data }: ContactProps) {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const dropdownRef = useRef<HTMLDivElement>(null);
 
-  const subjectOptions = data?.form?.inputs?.subject?.options || [
-    'General Inquiry',
-    'Donation & Sponsorship',
-    'Volunteer Opportunities',
-    'CSR & Corporate Partnership',
-    'Media & Press',
-    'Emergency Assistance',
-  ];
+  const subjectOptions = data.form.inputs.subject.options;
 
   // Close dropdown on outside click
   useEffect(() => {
@@ -129,7 +122,7 @@ export default function Contact({ data }: ContactProps) {
               transition={{ duration: 0.5, delay: 0.1, ease: 'easeOut' }}
               className="text-[11px] sm:text-[12.5px] font-bold tracking-[0.16em] uppercase text-[#1a5d3a]"
             >
-              {data.eyebrow || 'CONTACT US'}
+              {data.eyebrow}
             </motion.span>
             <motion.span
               initial={{ scaleX: 0 }}
@@ -148,8 +141,8 @@ export default function Contact({ data }: ContactProps) {
             transition={{ duration: 0.6, delay: 0.12, ease: [0.22, 1, 0.36, 1] }}
             className="mt-2 font-serif text-[28px] xs:text-[32px] sm:text-[38px] md:text-[44px] font-bold text-[#113824] tracking-tight leading-tight"
           >
-            <span>{data.title_prefix || 'Get in Touch '}</span>
-            <span className="text-[#1a5d3a]">{data.title_highlight || 'with Us'}</span>
+            <span>{data.title_prefix}</span>
+            <span className="text-[#1a5d3a]">{data.title_highlight}</span>
           </motion.h2>
 
           {/* Subtitle Description */}
@@ -262,18 +255,18 @@ export default function Contact({ data }: ContactProps) {
             <div>
               {/* Form Eyebrow */}
               <span className="text-[10.5px] sm:text-[11.5px] font-bold tracking-[0.16em] uppercase text-[#1a5d3a]">
-                {data.form?.eyebrow || 'SEND US A MESSAGE —'}
+                {data.form.eyebrow}
               </span>
 
               {/* Form Title */}
               <h3 className="mt-0.5 font-serif text-[24px] sm:text-[28px] md:text-[31px] font-bold text-[#113824] tracking-tight leading-tight">
-                <span>{data.form?.title_prefix || 'Contact '}</span>
-                <span className="text-[#1a5d3a]">{data.form?.title_highlight || 'Form'}</span>
+                <span>{data.form.title_prefix}</span>
+                <span className="text-[#1a5d3a]">{data.form.title_highlight}</span>
               </h3>
 
               {/* Form Description */}
               <p className="mt-1 text-[12px] sm:text-[13px] text-[#55635b] leading-relaxed">
-                {data.form?.description || 'Fill out the form below and our team will get back to you as soon as possible.'}
+                {data.form.description}
               </p>
 
               {/* Success Message Banner */}
@@ -288,7 +281,7 @@ export default function Contact({ data }: ContactProps) {
                     <svg className="w-4.5 h-4.5 text-emerald-600 shrink-0" viewBox="0 0 20 20" fill="currentColor">
                       <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
                     </svg>
-                    <span>Thank you! Your message has been sent successfully. Our team will contact you shortly.</span>
+                    <span>{data.form.success_message}</span>
                   </motion.div>
                 )}
               </AnimatePresence>
@@ -309,10 +302,10 @@ export default function Contact({ data }: ContactProps) {
                     <input
                       type="text"
                       required
-                      placeholder={data.form?.inputs?.name?.placeholder || 'Full Name *'}
+                      placeholder={data.form.inputs.name.placeholder}
                       value={formData.name}
                       onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                      className="w-full rounded-[11px] bg-[#fbfaf6] border border-[#e4ded5] pl-10 pr-3.5 py-2.2 sm:py-2.5 text-[13px] text-[#113824] placeholder-[#8c9b91] focus:border-[#1a5d3a] focus:bg-white focus:outline-none focus:ring-1 focus:ring-[#1a5d3a]/30 transition-all duration-200"
+                      className="w-full rounded-[11px] bg-[#fbfaf6] border border-[#e4ded5] pl-10 pr-3.5 py-3 sm:py-2.5 text-[16px] sm:text-[13px] text-[#113824] placeholder-[#8c9b91] focus:border-[#1a5d3a] focus:bg-white focus:outline-none focus:ring-1 focus:ring-[#1a5d3a]/30 transition-all duration-200"
                     />
                   </div>
 
@@ -327,10 +320,10 @@ export default function Contact({ data }: ContactProps) {
                     <input
                       type="email"
                       required
-                      placeholder={data.form?.inputs?.email?.placeholder || 'Email Address *'}
+                      placeholder={data.form.inputs.email.placeholder}
                       value={formData.email}
                       onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                      className="w-full rounded-[11px] bg-[#fbfaf6] border border-[#e4ded5] pl-10 pr-3.5 py-2.2 sm:py-2.5 text-[13px] text-[#113824] placeholder-[#8c9b91] focus:border-[#1a5d3a] focus:bg-white focus:outline-none focus:ring-1 focus:ring-[#1a5d3a]/30 transition-all duration-200"
+                      className="w-full rounded-[11px] bg-[#fbfaf6] border border-[#e4ded5] pl-10 pr-3.5 py-3 sm:py-2.5 text-[16px] sm:text-[13px] text-[#113824] placeholder-[#8c9b91] focus:border-[#1a5d3a] focus:bg-white focus:outline-none focus:ring-1 focus:ring-[#1a5d3a]/30 transition-all duration-200"
                     />
                   </div>
                 </div>
@@ -348,11 +341,11 @@ export default function Contact({ data }: ContactProps) {
                       type="tel"
                       inputMode="numeric"
                       required
-                      placeholder={data.form?.inputs?.phone?.placeholder || 'Phone Number *'}
+                      placeholder={data.form.inputs.phone.placeholder}
                       value={formData.phone}
                       onChange={handlePhoneChange}
                       onKeyDown={handlePhoneKeyDown}
-                      className="w-full rounded-[11px] bg-[#fbfaf6] border border-[#e4ded5] pl-10 pr-3.5 py-2.2 sm:py-2.5 text-[13px] text-[#113824] placeholder-[#8c9b91] focus:border-[#1a5d3a] focus:bg-white focus:outline-none focus:ring-1 focus:ring-[#1a5d3a]/30 transition-all duration-200"
+                      className="w-full rounded-[11px] bg-[#fbfaf6] border border-[#e4ded5] pl-10 pr-3.5 py-3 sm:py-2.5 text-[16px] sm:text-[13px] text-[#113824] placeholder-[#8c9b91] focus:border-[#1a5d3a] focus:bg-white focus:outline-none focus:ring-1 focus:ring-[#1a5d3a]/30 transition-all duration-200"
                     />
                   </div>
 
@@ -361,7 +354,7 @@ export default function Contact({ data }: ContactProps) {
                     <button
                       type="button"
                       onClick={() => setIsDropdownOpen((prev) => !prev)}
-                      className={`w-full flex items-center justify-between rounded-[11px] bg-[#fbfaf6] border pl-10 pr-3.5 py-2.2 sm:py-2.5 text-[13px] text-left transition-all duration-200 ${
+                      className={`w-full flex items-center justify-between rounded-[11px] bg-[#fbfaf6] border pl-10 pr-3.5 py-3 sm:py-2.5 text-[16px] sm:text-[13px] text-left transition-all duration-200 ${
                         isDropdownOpen
                           ? 'border-[#1a5d3a] bg-white ring-1 ring-[#1a5d3a]/30'
                           : 'border-[#e4ded5] hover:border-[#1a5d3a]/60'
@@ -381,7 +374,7 @@ export default function Contact({ data }: ContactProps) {
 
                       {/* Selected Value or Placeholder */}
                       <span className={formData.subject ? 'text-[#113824] font-medium truncate' : 'text-[#8c9b91] truncate'}>
-                        {formData.subject || (data.form?.inputs?.subject?.placeholder || 'Subject *')}
+                        {formData.subject || data.form.inputs.subject.placeholder}
                       </span>
 
                       {/* Animated Chevron Down */}
@@ -416,7 +409,7 @@ export default function Contact({ data }: ContactProps) {
                                   setFormData((prev) => ({ ...prev, subject: opt }));
                                   setIsDropdownOpen(false);
                                 }}
-                                className={`w-full flex items-center justify-between px-3 py-1.5 sm:py-2 text-[12.5px] rounded-[8px] transition-colors duration-150 text-left ${
+                                className={`w-full flex items-center justify-between px-3 py-2.5 sm:py-2 text-[14px] sm:text-[12.5px] rounded-[8px] transition-colors duration-150 text-left ${
                                   isSelected
                                     ? 'bg-[#1a5d3a] text-white font-medium'
                                     : 'text-[#113824] hover:bg-[#1a5d3a]/8 hover:text-[#1a5d3a]'
@@ -439,7 +432,7 @@ export default function Contact({ data }: ContactProps) {
 
                 {/* Row 3: Your Message Textarea (Compact Rows) */}
                 <div className="relative">
-                  <div className="absolute left-3.5 top-2.5 text-[#8c9b91] pointer-events-none">
+                  <div className="absolute left-3.5 top-3.5 sm:top-2.5 text-[#8c9b91] pointer-events-none">
                     <svg className="w-4 h-4 stroke-current stroke-[2] fill-none" viewBox="0 0 24 24">
                       <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" />
                     </svg>
@@ -447,10 +440,10 @@ export default function Contact({ data }: ContactProps) {
                   <textarea
                     required
                     rows={3}
-                    placeholder={data.form?.inputs?.message?.placeholder || 'Your Message *'}
+                    placeholder={data.form.inputs.message.placeholder}
                     value={formData.message}
                     onChange={(e) => setFormData({ ...formData, message: e.target.value })}
-                    className="w-full rounded-[11px] bg-[#fbfaf6] border border-[#e4ded5] pl-10 pr-3.5 py-2.2 sm:py-2.5 text-[13px] text-[#113824] placeholder-[#8c9b91] focus:border-[#1a5d3a] focus:bg-white focus:outline-none focus:ring-1 focus:ring-[#1a5d3a]/30 transition-all duration-200 resize-none"
+                    className="w-full rounded-[11px] bg-[#fbfaf6] border border-[#e4ded5] pl-10 pr-3.5 py-3 sm:py-2.5 text-[16px] sm:text-[13px] text-[#113824] placeholder-[#8c9b91] focus:border-[#1a5d3a] focus:bg-white focus:outline-none focus:ring-1 focus:ring-[#1a5d3a]/30 transition-all duration-200 resize-none"
                   />
                 </div>
 
@@ -461,9 +454,9 @@ export default function Contact({ data }: ContactProps) {
                     disabled={isSubmitting}
                     whileHover={{ scale: 1.025 }}
                     whileTap={{ scale: 0.97 }}
-                    className="group inline-flex items-center gap-2 px-5.5 sm:px-6.5 py-2.5 rounded-full bg-[#113824] hover:bg-[#0d2e1d] text-white text-[12.5px] sm:text-[13px] font-medium shadow-[0_4px_14px_rgba(17,56,36,0.2)] transition-all duration-200 disabled:opacity-70"
+                    className="group w-full sm:w-auto inline-flex items-center justify-center gap-2 px-5.5 sm:px-6.5 py-3 sm:py-2.5 rounded-full bg-[#113824] hover:bg-[#0d2e1d] text-white text-[14px] sm:text-[13px] font-medium shadow-[0_4px_14px_rgba(17,56,36,0.2)] transition-all duration-200 disabled:opacity-70"
                   >
-                    <span>{isSubmitting ? 'Sending...' : (data.form?.submit_button?.text || 'Send Message')}</span>
+                    <span>{isSubmitting ? data.form.submitting_text : data.form.submit_button.text}</span>
                     <svg className="w-3.5 h-3.5 stroke-current stroke-[2] fill-none group-hover:translate-x-1 transition-transform duration-200" viewBox="0 0 24 24">
                       <line x1="5" y1="12" x2="19" y2="12" />
                       <polyline points="12 5 19 12 12 19" />
@@ -485,8 +478,8 @@ export default function Contact({ data }: ContactProps) {
           >
             {/* Background Image: Original Volunteer & Child Photo */}
             <img
-              src={data.banner?.image || '/contact/contact-banner.webp'}
-              alt="Helping Hands Volunteer with Child"
+              src={data.banner.image}
+              alt={data.banner.image_alt}
               className="w-full h-full object-cover object-top block select-none group-hover:scale-103 transition-transform duration-700 ease-out"
             />
 
@@ -542,7 +535,7 @@ export default function Contact({ data }: ContactProps) {
                 transition={{ duration: 0.5, delay: 0.3 }}
                 className="mt-1.5 sm:mt-2 text-white font-sans font-bold text-[13.5px] xs:text-[14.5px] sm:text-[16px] leading-[1.35] tracking-tight max-w-[320px] drop-shadow-sm"
               >
-                {data.banner?.quote || 'Together we can create brighter futures for stronger communities.'}
+                {data.banner.quote}
               </motion.p>
 
               {/* Horizontal Underline Bar */}
@@ -571,11 +564,8 @@ export default function Contact({ data }: ContactProps) {
           <div className="relative w-full h-[220px] sm:h-[260px] md:h-[310px] overflow-hidden">
             {/* Interactive Original Google Map iframe called from data.json */}
             <iframe
-              title="Helping Hands Location Map"
-              src={
-                data.map?.embed_url ||
-                'https://maps.google.com/maps?q=123+Education+Lane,+New+York,+NY+10001&t=&z=15&ie=UTF8&iwloc=&output=embed'
-              }
+              title={data.map.iframe_title}
+              src={data.map.embed_url}
               width="100%"
               height="100%"
               style={{ border: 0 }}
@@ -594,14 +584,14 @@ export default function Contact({ data }: ContactProps) {
               <div className="flex items-start justify-between gap-2.5 sm:gap-3">
                 <div>
                   <h4 className="font-bold text-[11.5px] sm:text-[12.5px] text-[#113824] leading-tight">
-                    {data.map?.location_name || '123 Education Lane'}
+                    {data.map.location_name}
                   </h4>
                   <p className="mt-0.5 text-[10px] sm:text-[11px] text-[#55635b] leading-tight truncate">
-                    {data.map?.address || 'New York, NY 10001'}
+                    {data.map.address}
                   </p>
                 </div>
                 <a
-                  href={data.map?.directions_url || 'https://www.google.com/maps/dir/?api=1&destination=123+Education+Lane,+New+York,+NY+10001'}
+                  href={data.map.directions_url}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="flex flex-col items-center shrink-0 text-[#1a5d3a] hover:text-[#0d442d] transition-colors"
@@ -609,16 +599,16 @@ export default function Contact({ data }: ContactProps) {
                   <svg className="w-3.5 h-3.5 sm:w-4 sm:h-4 stroke-current stroke-[2.2] fill-none" viewBox="0 0 24 24">
                     <polygon points="3 11 22 2 13 21 11 13 3 11" />
                   </svg>
-                  <span className="text-[8.5px] sm:text-[9px] font-semibold uppercase mt-0.5">Directions</span>
+                  <span className="text-[8.5px] sm:text-[9px] font-semibold uppercase mt-0.5">{data.map.directions_text}</span>
                 </a>
               </div>
               <a
-                href={data.map?.directions_url || 'https://www.google.com/maps/dir/?api=1&destination=123+Education+Lane,+New+York,+NY+10001'}
+                href={data.map.directions_url}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="mt-1 inline-block text-[9.5px] sm:text-[10px] text-[#1a5d3a] font-medium hover:underline"
               >
-                View larger map
+                {data.map.view_larger_text}
               </a>
             </motion.div>
           </div>

@@ -5,22 +5,20 @@ import Footer from '../../components/sections/Footer';
 import Breadcrumb from '../../components/sections/Breadcrumb';
 import Blogs from '../../components/sections/Blogs';
 import BackToTop from '../../components/ui/BackToTop';
-import { common, pages, sections } from '@/components/types';
+import { common, pages, sections, type PageComponent } from '@/components/types';
+
+const pageData = pages.blog;
 
 export const metadata: Metadata = {
-  title: pages.blog?.metadata?.title || 'Our Blog | Helping Hands - Stories of Hope and Impact',
-  description:
-    pages.blog?.metadata?.description ||
-    'Read the latest news, updates, community events, and inspirational stories from Helping Hands NGO.',
+  title: pageData.metadata.title,
+  description: pageData.metadata.description,
 };
 
 export default function BlogListingPage() {
-  const blogPageData = pages.blog;
-  const breadcrumbData = blogPageData?.breadcrumb || {
-    title: 'Our Blog',
-    path: 'Home / Our Blog',
-    image: '/img/banner.webp',
-    bottom_shape: '/img/banner-bottom.webp',
+  // Keyed by the `component` name used in data.json -> pages.blog.components
+  const sectionMap: Record<string, React.ReactNode> = {
+    Breadcrumb: <Breadcrumb data={pageData.breadcrumb} />,
+    Blogs: <Blogs data={sections.blogs} />,
   };
 
   return (
@@ -28,17 +26,16 @@ export default function BlogListingPage() {
       {/* 1. Header Navigation */}
       <Header data={common.Header} />
 
-      {/* 2. Breadcrumb Banner */}
-      <Breadcrumb data={breadcrumbData} />
+      {/* 2. Dynamic Sections called from data.json */}
+      {pageData.components.map((block: PageComponent) => (
+        <React.Fragment key={block.key}>{sectionMap[block.component] ?? null}</React.Fragment>
+      ))}
 
-      {/* 3. Blogs Listing Section */}
-      <Blogs data={sections.blogs} />
-
-      {/* 4. Footer */}
+      {/* 3. Footer */}
       <Footer data={common.Footer} />
 
-      {/* 5. Back to Top Button */}
-      <BackToTop />
+      {/* 4. Back to Top Button */}
+      <BackToTop data={common.BackToTop} />
     </main>
   );
 }

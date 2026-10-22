@@ -6,47 +6,61 @@ import Footer from '../../../components/sections/Footer';
 import Breadcrumb from '../../../components/sections/Breadcrumb';
 import BlogDetail from '../../../components/sections/BlogDetail';
 import BackToTop from '../../../components/ui/BackToTop';
-import { common, getBlogBySlug, getAllBlogSlugs, sections } from '@/components/types';
+import {
+  applyTitleTemplate,
+  common,
+  getAllBlogSlugs,
+  getBlogBySlug,
+  pages,
+  sections,
+  type PageComponent,
+} from '@/components/types';
+
+const pageData = pages.blog_detail;
 
 interface PageProps {
-  params: Promise<{ slug: string }> | { slug: string };
+  params: Promise<{ slug: string }>;
 }
 
 export async function generateStaticParams() {
-  const slugs = getAllBlogSlugs();
-  return slugs.map((slug) => ({ slug }));
+  return getAllBlogSlugs().map((slug) => ({ slug }));
 }
 
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
-  const resolved = await params;
-  const blog = getBlogBySlug(resolved.slug);
+  const { slug } = await params;
+  const blog = getBlogBySlug(slug);
   if (!blog) {
     return {
-      title: 'Blog Details | Helping Hands',
-      description: 'Stories of impact and community support by Helping Hands NGO.',
+      title: pageData.metadata.title,
+      description: pageData.metadata.description,
     };
   }
   return {
-    title: `${blog.title} | Helping Hands`,
-    description: blog.lead || blog.paragraphs?.[0] || 'Helping Hands blog article.',
+    title: applyTitleTemplate(pageData.metadata.title_template, blog.title),
+    description: blog.lead || blog.paragraphs[0] || pageData.metadata.description,
   };
 }
 
 export default async function BlogSlugPage({ params }: PageProps) {
-  const resolved = await params;
-  const blog = getBlogBySlug(resolved.slug);
+  const { slug } = await params;
+  const blog = getBlogBySlug(slug);
 
+  // Unknown slug -> real 404 (previously silently showed the first blog)
   if (!blog) {
     notFound();
   }
 
-  // Breadcrumb matching Screenshot 2: "Blog Details", "Home / Blog Details"
-  const breadcrumbData = {
-    title: 'Blog Details',
-    breadcrumb: 'Home / Blog Details',
-    path: 'Home / Blog Details',
-    image: '/img/banner.webp',
-    bottom_shape: '/img/banner-bottom.webp',
+  // Keyed by the `component` name used in data.json -> pages.blog_detail.components
+  const sectionMap: Record<string, React.ReactNode> = {
+    Breadcrumb: <Breadcrumb data={pageData.breadcrumb} />,
+    BlogDetail: (
+      <BlogDetail
+        data={blog}
+        labels={sections.blogs.detail}
+        recentPostsHeading={sections.blogs.recent_posts_heading}
+        recentPosts={sections.blogs.recent_posts}
+      />
+    ),
   };
 
   return (
@@ -54,17 +68,16 @@ export default async function BlogSlugPage({ params }: PageProps) {
       {/* 1. Header Navigation */}
       <Header data={common.Header} />
 
-      {/* 2. Breadcrumb Banner */}
-      <Breadcrumb data={breadcrumbData} />
+      {/* 2. Dynamic Sections called from data.json */}
+      {pageData.components.map((block: PageComponent) => (
+        <React.Fragment key={block.key}>{sectionMap[block.component] ?? null}</React.Fragment>
+      ))}
 
-      {/* 3. Dynamic Blog Detail Section */}
-      <BlogDetail data={blog} recentPosts={sections.blogs?.recent_posts} />
-
-      {/* 4. Footer */}
+      {/* 3. Footer */}
       <Footer data={common.Footer} />
 
-      {/* 5. Back to Top Button */}
-      <BackToTop />
+      {/* 4. Back to Top Button */}
+      <BackToTop data={common.BackToTop} />
     </main>
   );
 }

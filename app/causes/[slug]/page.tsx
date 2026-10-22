@@ -6,44 +6,63 @@ import Footer from '../../../components/sections/Footer';
 import Breadcrumb from '../../../components/sections/Breadcrumb';
 import CauseDetails from '../../../components/sections/CauseDetails';
 import BackToTop from '../../../components/ui/BackToTop';
-import { common, getCauseBySlug, getAllCauseSlugs } from '@/components/types';
+import {
+  applyTitleTemplate,
+  common,
+  getAllCauseSlugs,
+  getCauseBySlug,
+  pages,
+  type BreadcrumbData,
+  type PageComponent,
+} from '@/components/types';
+
+const pageData = pages.causes_details;
 
 interface PageProps {
-  params: Promise<{ slug: string }> | { slug: string };
+  params: Promise<{ slug: string }>;
 }
 
 export async function generateStaticParams() {
-  const slugs = getAllCauseSlugs();
-  return slugs.map((slug) => ({ slug }));
+  return getAllCauseSlugs().map((slug) => ({ slug }));
 }
 
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
-  const resolved = await params;
-  const cause = getCauseBySlug(resolved.slug);
+  const { slug } = await params;
+  const cause = getCauseBySlug(slug);
   if (!cause) {
     return {
-      title: 'Cause Details | Helping Hands',
-      description: 'Learn about our causes, mission, and how we empower communities.',
+      title: pageData.metadata.title,
+      description: pageData.metadata.description,
     };
   }
   return {
-    title: `${cause.title} | Helping Hands`,
+    title: applyTitleTemplate(pageData.metadata.title_template, cause.title),
     description: cause.description,
   };
 }
 
 export default async function CauseSlugPage({ params }: PageProps) {
-  const resolved = await params;
-  const cause = getCauseBySlug(resolved.slug);
+  const { slug } = await params;
+  const cause = getCauseBySlug(slug);
 
+  // Unknown slug -> real 404 (previously silently showed the first cause)
   if (!cause) {
     notFound();
   }
 
-  const breadcrumbData = {
-    title: cause.badge || cause.title || 'Cause Details',
-    breadcrumb: `Home / Causes / ${cause.badge || cause.title}`,
-    path: `Home / Causes / ${cause.badge || cause.title}`,
+  // Base banner (image, shape, prefix) from data.json; title is the cause badge
+  const breadcrumbData: BreadcrumbData = {
+    ...pageData.breadcrumb,
+    title: cause.badge,
+    path: pageData.breadcrumb.path_prefix
+      ? `${pageData.breadcrumb.path_prefix} / ${cause.badge}`
+      : pageData.breadcrumb.path,
+  };
+
+  // Keyed by the `component` name used in data.json -> pages.causes_details.components
+  const sectionMap: Record<string, React.ReactNode> = {
+    Breadcrumb: <Breadcrumb data={breadcrumbData} />,
+    CauseDetails: <CauseDetails data={cause} />,
   };
 
   return (
@@ -51,17 +70,16 @@ export default async function CauseSlugPage({ params }: PageProps) {
       {/* 1. Header Navigation */}
       <Header data={common.Header} />
 
-      {/* 2. Breadcrumb Banner with Jagged Bottom Shape */}
-      <Breadcrumb data={breadcrumbData} />
+      {/* 2. Dynamic Sections called from data.json */}
+      {pageData.components.map((block: PageComponent) => (
+        <React.Fragment key={block.key}>{sectionMap[block.component] ?? null}</React.Fragment>
+      ))}
 
-      {/* 3. Dynamic Cause Details Section (Overview, About, Stats, Approach) */}
-      <CauseDetails data={cause} />
-
-      {/* 4. Footer */}
+      {/* 3. Footer */}
       <Footer data={common.Footer} />
 
-      {/* 5. Back to Top Button */}
-      <BackToTop />
+      {/* 4. Back to Top Button */}
+      <BackToTop data={common.BackToTop} />
     </main>
   );
 }

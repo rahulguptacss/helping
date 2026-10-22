@@ -46,7 +46,7 @@ export default function Header({ data }: HeaderProps) {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  const navLinks = data.links || [];
+  const navLinks = data.links;
 
   return (
     <>
@@ -60,14 +60,14 @@ export default function Header({ data }: HeaderProps) {
           
           {/* Left: Brand Logo in White Rounded Pill Badge (Mobile Responsive) */}
           <Link
-            href="/"
+            href={data.logo_link}
             onClick={() => setIsOpen(false)}
             className="group relative z-50 inline-flex items-center rounded-full bg-white px-2.5 py-1 sm:px-4 sm:py-1.5 md:px-5 md:py-2 shadow-sm transition-all duration-300 hover:shadow-md hover:scale-[1.02] active:scale-95 focus:outline-none"
-            aria-label={data.logo_text || 'Helping Hands Home'}
+            aria-label={data.logo_text}
           >
             <Image
-              src={data.logo || '/logo/logo.webp'}
-              alt={data.logo_text ? `${data.logo_text} - ${data.logo_subtext}` : 'Helping Hands'}
+              src={data.logo}
+              alt={`${data.logo_text} - ${data.logo_subtext}`}
               width={240}
               height={56}
               priority
@@ -80,11 +80,11 @@ export default function Header({ data }: HeaderProps) {
             type="button"
             onClick={() => setIsOpen(!isOpen)}
             className="group relative z-50 flex items-center gap-1.5 sm:gap-2.5 md:gap-3 cursor-pointer text-white transition-opacity duration-200 hover:opacity-90 active:scale-95 focus:outline-none select-none"
-            aria-label={isOpen ? 'Close navigation menu' : 'Open navigation menu'}
+            aria-label={isOpen ? data.menu_aria_labels.close : data.menu_aria_labels.open}
             aria-expanded={isOpen}
           >
             <span className="inline-block text-right w-[42px] sm:w-[48px] md:w-[54px] text-[13px] sm:text-[15px] md:text-[17px] font-medium tracking-wide text-white select-none">
-              {isOpen ? (data.close_button_text || 'Close') : (data.menu_button_text || 'Menu')}
+              {isOpen ? data.close_button_text : data.menu_button_text}
             </span>
 
             {/* Outlined square box with animated bars that morph into an X */}

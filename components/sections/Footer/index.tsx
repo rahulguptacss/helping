@@ -16,10 +16,10 @@ export default function Footer({ data }: FooterProps) {
         
         {/* 1. Centered Brand Logo (Matching Screenshot) */}
         <div className="flex flex-col items-center justify-center text-center">
-          <Link href="/" className="inline-flex items-center hover:opacity-90 transition-opacity">
+          <Link href={data.logo_link} className="inline-flex items-center hover:opacity-90 transition-opacity">
             <Image
-              src={data.logo || '/logo/logo.webp'}
-              alt={data.logo_text || 'Helping Hands'}
+              src={data.logo}
+              alt={data.logo_text}
               width={340}
               height={140}
               priority
@@ -58,7 +58,7 @@ export default function Footer({ data }: FooterProps) {
           <div className="flex items-center justify-center gap-3 sm:gap-4 mt-7 sm:mt-8">
             <span className="w-12 sm:w-16 h-[1.5px] bg-[#1a5d3a]" />
             <h3 className="font-serif text-[18px] sm:text-[20px] font-bold text-[#113824]">
-              {data.contact_heading || 'Contact Info'}
+              {data.contact_heading}
             </h3>
             <span className="w-12 sm:w-16 h-[1.5px] bg-[#1a5d3a]" />
           </div>
@@ -103,8 +103,12 @@ export default function Footer({ data }: FooterProps) {
                 <MapPin className="h-4 w-4" />
               </span>
               <div className="text-[13.5px] sm:text-[14px] font-normal text-[#1a2e22] text-left leading-tight">
-                <span className="block">{data.contact_info.address_line1 || '123 Education Lane,'}</span>
-                <span className="block">{data.contact_info.address_line2 || data.contact_info.address || 'New York, NY 10001'}</span>
+                {data.contact_info.address_line1 && (
+                  <span className="block">{data.contact_info.address_line1}</span>
+                )}
+                {(data.contact_info.address_line2 || data.contact_info.address) && (
+                  <span className="block">{data.contact_info.address_line2 || data.contact_info.address}</span>
+                )}
               </div>
             </div>
           </div>
@@ -113,7 +117,7 @@ export default function Footer({ data }: FooterProps) {
           <div className="flex items-center justify-center gap-3 sm:gap-4 mt-7 sm:mt-8">
             <span className="w-12 sm:w-16 h-[1.5px] bg-[#1a5d3a]" />
             <h3 className="font-serif text-[18px] sm:text-[20px] font-bold text-[#113824]">
-              {data.social_heading || 'Follow Us'}
+              {data.social_heading}
             </h3>
             <span className="w-12 sm:w-16 h-[1.5px] bg-[#1a5d3a]" />
           </div>
@@ -158,7 +162,7 @@ export default function Footer({ data }: FooterProps) {
       {/* 5. Bottom Copyright Bar: Dark Green (Matching Screenshot) */}
       <div className="mt-7 sm:mt-8 w-full bg-[#00572e] py-3.5 text-center">
         <div className="mx-auto max-w-[1360px] px-4 text-[13px] sm:text-[13.5px] font-normal text-white/95">
-          {data.copyright || 'Copyright © 2026. All rights reserved. Powered by Lestow'}
+          {data.copyright}
         </div>
       </div>
     </footer>

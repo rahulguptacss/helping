@@ -2,6 +2,7 @@
   "common": {
     "Header": {
       "logo": "/logo/logo.webp",
+      "logo_link": "/",
       "logo_text": "Helping Hands",
       "logo_subtext": "NGO for a Better Tomorrow",
       "links": [
@@ -48,6 +49,10 @@
       ],
       "menu_button_text": "Menu",
       "close_button_text": "Close",
+      "menu_aria_labels": {
+        "open": "Open navigation menu",
+        "close": "Close navigation menu"
+      },
       "donate_button_text": "Donate Now",
       "donate_button_link": "#causes",
       "contact_info": {
@@ -57,6 +62,7 @@
     },
     "Footer": {
       "logo": "/logo/logo.webp",
+      "logo_link": "/",
       "logo_text": "Helping Hands",
       "logo_subtext": "NGO for a Better Tomorrow",
       "nav_links": [
@@ -124,6 +130,9 @@
         }
       ],
       "copyright": "Copyright © 2026. All rights reserved. Powered by Lestow"
+    },
+    "BackToTop": {
+      "aria_label": "Scroll back to top"
     }
   },
   "categories": {
@@ -167,6 +176,12 @@
               "metadata": {
                 "title": "About Us | Helping Hands",
                 "description": "Driven to connect to, integrate and transform communities. Learn more about our story, mission, and movement."
+              },
+              "breadcrumb": {
+                "title": "About Us",
+                "path": "Home / About Us",
+                "image": "/img/banner.webp",
+                "bottom_shape": "/img/banner-bottom.webp"
               },
               "components": [
                 {
@@ -316,11 +331,13 @@
               "pageName": "Causes Details",
               "metadata": {
                 "title": "Causes Details | Helping Hands - Quality Education for Every Child",
-                "description": "We believe that every child deserves access to quality education. Learn about our approach, our impact, and how we empower underprivileged children."
+                "description": "We believe that every child deserves access to quality education. Learn about our approach, our impact, and how we empower underprivileged children.",
+                "title_template": "%s | Helping Hands"
               },
               "breadcrumb": {
                 "title": "Causes Details",
                 "path": "Home / Causes Details",
+                "path_prefix": "Home / Causes",
                 "image": "/img/banner.webp",
                 "bottom_shape": "/img/banner-bottom.webp"
               },
@@ -364,7 +381,8 @@
               "pageName": "Blog Details",
               "metadata": {
                 "title": "Blog Details | Helping Hands",
-                "description": "Learn exactly how we made event and brought community support to those in need."
+                "description": "Learn exactly how we made event and brought community support to those in need.",
+                "title_template": "%s | Helping Hands"
               },
               "breadcrumb": {
                 "title": "Blog Details",
@@ -382,6 +400,27 @@
                   "component": "BlogDetail"
                 }
               ]
+            },
+            "not_found": {
+              "title": "Page Not Found",
+              "pageName": "Not Found",
+              "metadata": {
+                "title": "Page Not Found | Helping Hands",
+                "description": "The page you are looking for doesn't exist or has been moved."
+              },
+              "code": "404",
+              "eyebrow": "Oops! Page Not Found",
+              "heading": "Looks like you're lost",
+              "description": "The page you are looking for doesn't exist or has been moved. Let's get you back to helping hands and happy hearts.",
+              "background_image": "/hero/hero-bg-hands.webp",
+              "primary_button": {
+                "text": "Back to Home",
+                "href": "/"
+              },
+              "secondary_button": {
+                "text": "Contact Us",
+                "href": "/contact"
+              }
             }
           },
           "sections": {
@@ -406,7 +445,8 @@
               "title_line4": "PEOPLE",
               "join_badge": {
                 "text": "Get Involved",
-                "avatars": "/about/get-involved-avatar.webp"
+                "avatars": "/about/get-involved-avatar.webp",
+                "avatars_alt": "Volunteers"
               },
               "description": "We are a grassroots non-profit dedicated to bridging educational inequalities and healthcare disparities across underserved rural communities. By combining community trust with accountable action, we empower children and families to overcome generational poverty and achieve self-reliance.",
               "image": "/img/about.webp",
@@ -425,6 +465,8 @@
                 "text": "View All Causes",
                 "href": "/causes"
               },
+              "read_more_text": "Read More",
+              "empty_text": "No causes found in this category.",
               "categories": [
                 "All Causes",
                 "Education",
@@ -434,6 +476,7 @@
                 "Food & Nutrition",
                 "Women Empowerment"
               ],
+              "filter_label": "Filter causes by category",
               "items": [
                 {
                   "id": "01",
@@ -951,12 +994,6 @@
                 }
               ]
             },
-            "breadcrumb": {
-              "title": "About Us",
-              "path": "Home / About Us",
-              "image": "/img/banner.webp",
-              "bottom_shape": "/img/banner-bottom.webp"
-            },
             "our_story": {
               "title": "OUR STORY",
               "paragraphs": [
@@ -1110,9 +1147,16 @@
                 "Community",
                 "Medical"
               ],
+              "filter_label": "Filter photos by category",
               "load_more_button": {
                 "text": "Load More",
+                "loaded_text": "All Photos Loaded",
                 "icon": "refresh-cw"
+              },
+              "lightbox_labels": {
+                "close": "Close modal",
+                "previous": "Previous image",
+                "next": "Next image"
               },
               "items": [
                 {
@@ -1394,17 +1438,23 @@
                 "submit_button": {
                   "text": "Send Message",
                   "icon": "arrow-right"
-                }
+                },
+                "submitting_text": "Sending...",
+                "success_message": "Thank you! Your message has been sent successfully. Our team will contact you shortly."
               },
               "banner": {
                 "image": "/contact/contact-banner.webp",
+                "image_alt": "Helping Hands Volunteer with Child",
                 "quote": "Together we can create brighter futures for stronger communities."
               },
               "map": {
                 "embed_url": "https://maps.google.com/maps?q=123+Education+Lane,+New+York,+NY+10001&t=&z=15&ie=UTF8&iwloc=&output=embed",
+                "iframe_title": "Helping Hands Location Map",
                 "location_name": "123 Education Lane",
                 "address": "New York, NY 10001",
-                "directions_url": "https://www.google.com/maps/dir/?api=1&destination=123+Education+Lane,+New+York,+NY+10001"
+                "directions_url": "https://www.google.com/maps/dir/?api=1&destination=123+Education+Lane,+New+York,+NY+10001",
+                "directions_text": "Directions",
+                "view_larger_text": "View larger map"
               }
             },
             "faq": {
@@ -1457,6 +1507,19 @@
               "eyebrow": "OUR BLOG",
               "title": "Our Blog",
               "recent_posts_heading": "Recent Post",
+              "read_more_text": "Read More",
+              "pagination_labels": {
+                "previous": "Previous page",
+                "next": "Next page"
+              },
+              "detail": {
+                "author_prefix": "By",
+                "inset_image_alt": "Event snapshot",
+                "back_link": {
+                  "text": "Back to All Blogs",
+                  "href": "/blog"
+                }
+              },
               "items": [
                 {
                   "id": "01",

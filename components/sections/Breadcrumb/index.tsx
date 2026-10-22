@@ -5,29 +5,14 @@ import { motion } from 'framer-motion';
 import type { BreadcrumbData } from '@/components/types';
 
 interface BreadcrumbProps {
-  data?: BreadcrumbData;
-  title?: string;
-  breadcrumb?: string;
-  path?: string;
-  image?: string;
-  bottom_shape?: string;
+  data: BreadcrumbData;
 }
 
-export default function Breadcrumb({
-  data,
-  title: propTitle,
-  breadcrumb: propBreadcrumb,
-  path: propPath,
-  image: propImage,
-  bottom_shape: propBottomShape,
-}: BreadcrumbProps) {
-  const title = propTitle || data?.title || 'About Us';
-  const breadcrumbText = propBreadcrumb || propPath || data?.path || data?.breadcrumb || `Home / ${title}`;
-  const image = propImage || data?.image || '/img/banner.webp';
-  const bottomShape = propBottomShape || data?.bottom_shape || '/img/banner-bottom.webp';
+export default function Breadcrumb({ data }: BreadcrumbProps) {
+  const { title, path, image, bottom_shape: bottomShape } = data;
 
   // Parse path string (e.g. "Home / About Us" or "Home / Our Causes") into breadcrumb links
-  const parts = breadcrumbText.split('/').map((s) => s.trim()).filter(Boolean);
+  const parts = path.split('/').map((s) => s.trim()).filter(Boolean);
 
   return (
     <section className="relative w-full overflow-hidden bg-[#111827] h-[280px] sm:h-[340px] md:h-[400px] lg:h-[430px] flex items-center justify-center select-none">

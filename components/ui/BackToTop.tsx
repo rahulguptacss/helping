@@ -2,8 +2,13 @@
 
 import { useEffect, useState } from 'react';
 import { ArrowUp } from 'lucide-react';
+import type { BackToTopData } from '@/components/types';
 
-export default function BackToTop() {
+interface BackToTopProps {
+  data: BackToTopData;
+}
+
+export default function BackToTop({ data }: BackToTopProps) {
   const [visible, setVisible] = useState(false);
 
   useEffect(() => {
@@ -24,7 +29,7 @@ export default function BackToTop() {
     <button
       type="button"
       onClick={scrollToTop}
-      aria-label="Scroll back to top"
+      aria-label={data.aria_label}
       className="fixed bottom-6 right-6 z-40 flex h-11 w-11 items-center justify-center rounded-full bg-[#006837] text-white shadow-lg transition-all duration-300 hover:bg-[#004d28] hover:scale-110 active:scale-95 cursor-pointer"
     >
       <ArrowUp className="h-5 w-5 stroke-[2.5]" />

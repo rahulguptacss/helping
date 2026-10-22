@@ -4,57 +4,18 @@ import React from 'react';
 import Link from 'next/link';
 import { Calendar, User, ArrowLeft } from 'lucide-react';
 import { motion } from 'framer-motion';
-import type { BlogDetailData, RecentPostItem } from '@/components/types';
+import type { BlogDetailData, BlogDetailLabels, RecentPostItem } from '@/components/types';
 
 interface BlogDetailProps {
   data: BlogDetailData;
-  recentPosts?: RecentPostItem[];
+  labels: BlogDetailLabels;
+  recentPostsHeading: string;
+  recentPosts: RecentPostItem[];
 }
 
-export default function BlogDetail({ data, recentPosts }: BlogDetailProps) {
-  if (!data) return null;
-
-  // Use identical images from the blog items (5 items)
-  const defaultRecentPosts: RecentPostItem[] = (recentPosts && recentPosts.length > 0
-    ? recentPosts
-    : [
-        {
-          slug: 'learn-exactly-how-we-made-event',
-          title: 'Learn exactly how we made event',
-          date: 'December 30, 2025',
-          image: '/blog/4.webp',
-          href: '/blog/learn-exactly-how-we-made-event',
-        },
-        {
-          slug: 'insights-news-and-success-stories',
-          title: 'Insights, News, and success stories',
-          date: 'December 30, 2025',
-          image: '/blog/sapling.webp',
-          href: '/blog/insights-news-and-success-stories',
-        },
-        {
-          slug: 'give-african-childrens-a-good-education',
-          title: 'Give african childrens a good education',
-          date: 'December 30, 2025',
-          image: '/blog/children.webp',
-          href: '/blog/give-african-childrens-a-good-education',
-        },
-        {
-          slug: 'rural-healthcare-and-relief-initiative',
-          title: 'Rural healthcare and emergency relief initiative',
-          date: 'December 28, 2025',
-          image: '/blog/1.webp',
-          href: '/blog/rural-healthcare-and-relief-initiative',
-        },
-        {
-          slug: 'volunteer-voices-transforming-lives-together',
-          title: 'Volunteer voices: Transforming lives together',
-          date: 'December 26, 2025',
-          image: '/blog/2.webp',
-          href: '/blog/volunteer-voices-transforming-lives-together',
-        },
-      ]
-  ).slice(0, 5);
+export default function BlogDetail({ data, labels, recentPostsHeading, recentPosts }: BlogDetailProps) {
+  // Recent posts sidebar list from data.json (max 5)
+  const sidebarPosts = recentPosts.slice(0, 5);
 
   return (
     <article className="relative w-full bg-[#f3f7f4] border-b border-[#e1e9e3] py-10 sm:py-14 lg:py-18">
@@ -98,7 +59,7 @@ export default function BlogDetail({ data, recentPosts }: BlogDetailProps) {
             <div className="flex flex-wrap items-center gap-2 text-[12px] sm:text-[12.5px] text-[#6b7280] font-medium mt-2.5">
               <span className="flex items-center gap-1.5">
                 <User className="w-3.5 h-3.5 text-[#1a5d3a] stroke-[2.2]" />
-                <span>By {data.author || 'Salim Rana'}</span>
+                <span>{labels.author_prefix} {data.author}</span>
               </span>
               <span className="text-[#d1d5db]">|</span>
               <span className="flex items-center gap-1.5">
@@ -180,7 +141,7 @@ export default function BlogDetail({ data, recentPosts }: BlogDetailProps) {
                   >
                     <img
                       src={imgSrc}
-                      alt="Event snapshot"
+                      alt={labels.inset_image_alt}
                       className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-104"
                     />
                   </motion.div>
@@ -198,11 +159,11 @@ export default function BlogDetail({ data, recentPosts }: BlogDetailProps) {
             {/* Back to Blog link */}
             <div className="mt-8 pt-5 border-t border-[#eef2ef]">
               <Link
-                href="/blog"
+                href={labels.back_link.href}
                 className="inline-flex items-center gap-2 text-[13px] font-semibold text-[#1a5d3a] hover:text-[#113824] transition-colors"
               >
                 <ArrowLeft className="w-4 h-4 stroke-[2.2]" />
-                <span>Back to All Blogs</span>
+                <span>{labels.back_link.text}</span>
               </Link>
             </div>
 
@@ -218,16 +179,16 @@ export default function BlogDetail({ data, recentPosts }: BlogDetailProps) {
               <div className="flex items-center gap-3 mb-2">
                 <span className="w-[4.5px] h-[19px] bg-[#0d4a27] rounded-full shrink-0" />
                 <h3 className="font-serif text-[20px] sm:text-[22px] font-bold text-[#113824] leading-none">
-                  Recent Post
+                  {recentPostsHeading}
                 </h3>
               </div>
 
               {/* Recent Posts List with Dividers Between Items */}
               <div className="flex flex-col divide-y divide-[#ece8df]">
-                {defaultRecentPosts.map((post, idx) => (
+                {sidebarPosts.map((post) => (
                   <Link
-                    key={post.slug || idx}
-                    href={post.href || `/blog/${post.slug}`}
+                    key={post.slug}
+                    href={post.href}
                     className="flex items-center gap-3.5 sm:gap-4 py-4 sm:py-4.5 first:pt-3.5 last:pb-1 group/item"
                   >
                     {/* Thumbnail directly using blog image (Req #7) */}

@@ -1,37 +1,14 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import type { AboutStoryData, AboutGalleryItem } from '@/components/types';
+import type { AboutStoryData } from '@/components/types';
 
 interface OurStoryProps {
   data: AboutStoryData;
-  gallery?: AboutGalleryItem[];
 }
 
-const DEFAULT_GALLERY: AboutGalleryItem[] = [
-  {
-    id: '01',
-    image: '/about/gallery-1.webp',
-    alt: 'Three cheerful boys smiling together',
-  },
-  {
-    id: '02',
-    image: '/about/gallery-2.webp',
-    alt: 'Two young girls hugging happily',
-  },
-  {
-    id: '03',
-    image: '/about/gallery-3.webp',
-    alt: 'Volunteers distributing meals and support',
-  },
-];
-
-export default function OurStory({ data, gallery }: OurStoryProps) {
-  const galleryItems =
-    (data.gallery && data.gallery.length > 0 ? data.gallery : null) ||
-    (data.items && data.items.length > 0 ? data.items : null) ||
-    (gallery && gallery.length > 0 ? gallery : null) ||
-    DEFAULT_GALLERY;
+export default function OurStory({ data }: OurStoryProps) {
+  const galleryItems = data.gallery;
 
   return (
     <section className="relative w-full overflow-hidden bg-[#f8f3ed] pt-14 sm:pt-20 lg:pt-24 pb-20 sm:pb-28 md:pb-36 lg:pb-44">
@@ -52,15 +29,12 @@ export default function OurStory({ data, gallery }: OurStoryProps) {
           >
             {/* Giant Condensed Heading: reduced font-weight (font-bold instead of font-black) and increased font-size */}
             <h2 className="font-condensed font-bold text-[44px] xs:text-[50px] sm:text-[58px] md:text-[64px] lg:text-[70px] xl:text-[74px] leading-[0.9] tracking-tight text-[#141414] uppercase">
-              {data.title || 'OUR STORY'}
+              {data.title}
             </h2>
 
             {/* Paragraphs with Exact Screenshot Copy */}
             <div className="mt-5 sm:mt-7 space-y-4 sm:space-y-5 text-[14px] xs:text-[14.5px] sm:text-[15px] md:text-[15.5px] leading-[1.68] text-[#2c2c2c] max-w-[500px]">
-              {(data.paragraphs && data.paragraphs.length > 0 ? data.paragraphs : [
-                "Demonstrated by living our core values: compassion, growth, courage to act, responsibility, belonging, curiosity. You can see them cultivated in every experience for students, families and staff.",
-                "Community is everything. It's who we are and how things get done. Everyone here is motivated by a deep commitment to making sure each child and family feels welcome and included. When everyone feels like they belong, we are stronger and smarter together. We're a community driven to make the world a better place—starting in our own backyard."
-              ]).map((p, idx) => (
+              {data.paragraphs.map((p, idx) => (
                 <p key={idx}>{p}</p>
               ))}
             </div>
@@ -78,8 +52,8 @@ export default function OurStory({ data, gallery }: OurStoryProps) {
               <motion.img
                 whileHover={{ scale: 1.02 }}
                 transition={{ duration: 0.6, ease: 'easeOut' }}
-                src={data.image || '/about/story.webp'}
-                alt={data.image_alt || 'Girls writing in school classroom'}
+                src={data.image}
+                alt={data.image_alt}
                 className="h-full w-full object-cover object-center rounded-[24px] sm:rounded-[32px] md:rounded-[36px]"
               />
             </div>
@@ -112,7 +86,7 @@ export default function OurStory({ data, gallery }: OurStoryProps) {
                       whileHover={{ scale: 1.04 }}
                       transition={{ duration: 0.5, ease: 'easeOut' }}
                       src={item.image}
-                      alt={item.alt || 'Helping Hands community'}
+                      alt={item.alt}
                       className="h-full w-full object-cover object-center rounded-[18px] sm:rounded-[28px] md:rounded-[32px]"
                     />
                   </div>

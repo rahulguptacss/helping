@@ -7,29 +7,19 @@ import { motion, AnimatePresence } from 'framer-motion';
 import type { BlogsSectionData, BlogItem, RecentPostItem } from '@/components/types';
 
 interface BlogsProps {
-  data?: BlogsSectionData;
+  data: BlogsSectionData;
 }
 
 export default function Blogs({ data }: BlogsProps) {
   const [currentPage, setCurrentPage] = useState(1);
   const sectionRef = useRef<HTMLElement>(null);
 
-  const items: BlogItem[] = data?.items || [];
+  const items: BlogItem[] = data.items;
   const itemsPerPage = 3;
   const totalPages = Math.max(1, Math.ceil(items.length / itemsPerPage));
 
-  // Dynamic Recent Posts directly using the blog posts' images (5 items)
-  const recentPosts: RecentPostItem[] = (
-    data?.recent_posts && data.recent_posts.length > 0
-      ? data.recent_posts
-      : items.map((item) => ({
-          slug: item.slug,
-          title: item.title,
-          date: item.date,
-          image: item.image,
-          href: item.href || `/blog/${item.slug}`,
-        }))
-  ).slice(0, 5);
+  // Recent posts sidebar list from data.json (max 5)
+  const recentPosts: RecentPostItem[] = data.recent_posts.slice(0, 5);
 
   // Pagination calculation
   const startIndex = (currentPage - 1) * itemsPerPage;
@@ -69,7 +59,7 @@ export default function Blogs({ data }: BlogsProps) {
               >
                 {currentBlogs.map((blog, idx) => (
                   <motion.article
-                    key={blog.id || blog.slug || idx}
+                    key={blog.id}
                     initial={{ opacity: 0, y: 16 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.4, delay: idx * 0.08 }}
@@ -96,12 +86,12 @@ export default function Blogs({ data }: BlogsProps) {
                           <span className="text-[#9ca3af] mx-1">|</span>
                           <span className="flex items-center gap-1.5">
                             <MessageSquare className="w-3.5 h-3.5 text-[#0d4a27] stroke-[2]" />
-                            <span>{blog.comments_count || 'No Comments'}</span>
+                            <span>{blog.comments_count}</span>
                           </span>
                         </div>
 
                         {/* Blog Title: Large Serif Heading */}
-                        <Link href={blog.href || `/blog/${blog.slug}`}>
+                        <Link href={blog.href}>
                           <h2 className="font-serif text-[21px] sm:text-[24px] lg:text-[27px] font-bold text-[#113824] leading-[1.22] tracking-tight mt-2.5 sm:mt-3 group-hover:text-[#1a5d3a] transition-colors">
                             {blog.title}
                           </h2>
@@ -116,10 +106,10 @@ export default function Blogs({ data }: BlogsProps) {
                       {/* Read More Pill Button */}
                       <div className="mt-4 sm:mt-5 pt-1">
                         <Link
-                          href={blog.href || `/blog/${blog.slug}`}
+                          href={blog.href}
                           className="group/btn inline-flex items-center gap-2 rounded-full bg-[#0a4d2e] hover:bg-[#073921] active:scale-95 text-white px-5 sm:px-6 py-2.5 text-[12.5px] sm:text-[13px] font-medium shadow-xs transition-all self-start"
                         >
-                          <span>Read More</span>
+                          <span>{data.read_more_text}</span>
                           <ArrowRight className="w-4 h-4 stroke-[2.2] transition-transform duration-200 group-hover/btn:translate-x-1" />
                         </Link>
                       </div>
@@ -141,7 +131,7 @@ export default function Blogs({ data }: BlogsProps) {
                     whileTap={{ scale: 0.95 }}
                     type="button"
                     onClick={() => handlePageChange(currentPage - 1)}
-                    aria-label="Previous page"
+                    aria-label={data.pagination_labels.previous}
                     className="w-10 h-10 rounded-full border border-[#d6e2d9] bg-white text-[#4b5563] hover:border-[#0d4a27] hover:text-[#0d4a27] flex items-center justify-center text-[13.5px] transition-colors shadow-2xs"
                   >
                     <ChevronLeft className="w-4 h-4 stroke-[2.2]" />
@@ -173,7 +163,7 @@ export default function Blogs({ data }: BlogsProps) {
                     whileTap={{ scale: 0.95 }}
                     type="button"
                     onClick={() => handlePageChange(currentPage + 1)}
-                    aria-label="Next page"
+                    aria-label={data.pagination_labels.next}
                     className="w-10 h-10 rounded-full border border-[#d6e2d9] bg-white text-[#4b5563] hover:border-[#0d4a27] hover:text-[#0d4a27] flex items-center justify-center text-[13.5px] transition-colors shadow-2xs"
                   >
                     <ChevronRight className="w-4 h-4 stroke-[2.2]" />
@@ -193,16 +183,16 @@ export default function Blogs({ data }: BlogsProps) {
               <div className="flex items-center gap-3 mb-2">
                 <span className="w-[4.5px] h-[19px] bg-[#0d4a27] rounded-full shrink-0" />
                 <h3 className="font-serif text-[20px] sm:text-[22px] font-bold text-[#113824] leading-none">
-                  {data?.recent_posts_heading || 'Recent Post'}
+                  {data.recent_posts_heading}
                 </h3>
               </div>
 
               {/* Recent Posts List with Horizontal Dividers */}
               <div className="flex flex-col divide-y divide-[#ece8df]">
-                {recentPosts.map((post, idx) => (
+                {recentPosts.map((post) => (
                   <Link
-                    key={post.slug || idx}
-                    href={post.href || `/blog/${post.slug}`}
+                    key={post.slug}
+                    href={post.href}
                     className="flex items-center gap-3.5 sm:gap-4 py-4 sm:py-4.5 first:pt-3.5 last:pb-1 group/item"
                   >
                     {/* Thumbnail directly using blog image (Req #7) */}

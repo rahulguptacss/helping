@@ -12,14 +12,7 @@ export default function Testimonials({ data }: TestimonialsProps) {
   const [activeIndex, setActiveIndex] = useState(0);
   const [isPaused, setIsPaused] = useState(false);
 
-  const items = data.items && data.items.length > 0 ? data.items : [
-    {
-      id: '01',
-      quote: data.quote || 'Thanks to Helping Hands, my daughter now has access to quality education and a brighter future.',
-      author: data.author || 'Priya Sharma',
-      role: data.role || 'Parent, Beneficiary',
-    }
-  ];
+  const items = data.items;
 
   // Auto-slide every 5 seconds (pauses on user hover)
   useEffect(() => {
@@ -52,8 +45,8 @@ export default function Testimonials({ data }: TestimonialsProps) {
               <motion.img
                 whileHover={{ scale: 1.02 }}
                 transition={{ duration: 0.5, ease: 'easeOut' }}
-                src={data.image || '/testimonials/teacher-storytime.webp'}
-                alt={data.image_alt || 'Teacher volunteer reading storybook to children'}
+                src={data.image}
+                alt={data.image_alt}
                 className="h-full w-full object-cover object-center rounded-none"
               />
             </div>

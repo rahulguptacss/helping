@@ -141,7 +141,7 @@ export default function CauseDetails({ data }: CauseDetailsProps) {
                 <div className="flex items-center gap-2.5 mb-2 sm:mb-2.5">
                   <span className="w-8 sm:w-10 h-[1.5px] bg-[#1a5d3a]" />
                   <span className="text-[12px] sm:text-[12.5px] font-semibold text-[#1a5d3a]">
-                    {data.about.eyebrow || 'About This Cause'}
+                    {data.about.eyebrow}
                   </span>
                 </div>
 
@@ -177,7 +177,7 @@ export default function CauseDetails({ data }: CauseDetailsProps) {
                 <div className="flex items-center justify-center gap-2.5 sm:gap-3 mb-1.5">
                   <span className="w-7 sm:w-9 h-[1.5px] bg-[#1a5d3a]" />
                   <span className="text-[12px] sm:text-[13px] font-semibold text-[#1a5d3a]">
-                    {data.impact.eyebrow || 'Our Impact So Far'}
+                    {data.impact.eyebrow}
                   </span>
                   <span className="w-7 sm:w-9 h-[1.5px] bg-[#1a5d3a]" />
                 </div>
@@ -237,7 +237,7 @@ export default function CauseDetails({ data }: CauseDetailsProps) {
                 <div className="flex items-center gap-2.5 mb-1.5">
                   <span className="w-8 sm:w-10 h-[1.5px] bg-[#1a5d3a]" />
                   <span className="text-[12px] sm:text-[13px] font-semibold text-[#1a5d3a]">
-                    {data.approach.eyebrow || 'How We Make a Difference'}
+                    {data.approach.eyebrow}
                   </span>
                   <span className="w-8 sm:w-10 h-[1.5px] bg-[#1a5d3a]" />
                 </div>

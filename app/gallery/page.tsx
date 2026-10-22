@@ -7,27 +7,19 @@ import Gallery from '../../components/sections/Gallery';
 import BackToTop from '../../components/ui/BackToTop';
 import { common, pages, sections, type PageComponent } from '@/components/types';
 
+const pageData = pages.gallery;
+
 export const metadata: Metadata = {
-  title: pages.gallery?.metadata?.title || 'Our Gallery | Helping Hands',
-  description:
-    pages.gallery?.metadata?.description ||
-    'Explore our journey through images — from community support and volunteer efforts to the lives we have touched.',
+  title: pageData.metadata.title,
+  description: pageData.metadata.description,
 };
 
 export default function GalleryPage() {
-  const galleryPageData = pages.gallery;
-
+  // Keyed by the `component` name used in data.json -> pages.gallery.components
   const sectionMap: Record<string, React.ReactNode> = {
-    Breadcrumb: <Breadcrumb data={galleryPageData?.breadcrumb || sections.breadcrumb} />,
-    BreadcrumbSection: <Breadcrumb data={galleryPageData?.breadcrumb || sections.breadcrumb} />,
-    Gallery: sections.gallery ? <Gallery data={sections.gallery} /> : null,
-    GallerySection: sections.gallery ? <Gallery data={sections.gallery} /> : null,
+    Breadcrumb: <Breadcrumb data={pageData.breadcrumb} />,
+    Gallery: <Gallery data={sections.gallery} />,
   };
-
-  const components: PageComponent[] = galleryPageData?.components || [
-    { key: 'BreadcrumbSection', component: 'Breadcrumb' },
-    { key: 'GallerySection', component: 'Gallery' },
-  ];
 
   return (
     <main className="flex min-h-screen flex-col bg-white">
@@ -35,21 +27,15 @@ export default function GalleryPage() {
       <Header data={common.Header} />
 
       {/* 2. Dynamic Sections called from data.json */}
-      {components.map((block: PageComponent) => {
-        const componentElement = sectionMap[block.component] || sectionMap[block.key];
-        if (!componentElement) return null;
-        return (
-          <React.Fragment key={block.key}>
-            {componentElement}
-          </React.Fragment>
-        );
-      })}
+      {pageData.components.map((block: PageComponent) => (
+        <React.Fragment key={block.key}>{sectionMap[block.component] ?? null}</React.Fragment>
+      ))}
 
       {/* 3. Footer */}
       <Footer data={common.Footer} />
 
       {/* 4. Back to Top Button */}
-      <BackToTop />
+      <BackToTop data={common.BackToTop} />
     </main>
   );
 }

@@ -27,8 +27,8 @@ export default function About({ data }: AboutProps) {
               <motion.img
                 whileHover={{ scale: 1.03 }}
                 transition={{ duration: 0.6, ease: 'easeOut' }}
-                src={data.image || '/img/about.webp'}
-                alt={data.image_alt || 'Children smiling together'}
+                src={data.image}
+                alt={data.image_alt}
                 className="h-full w-full object-cover object-center rounded-none"
               />
             </div>
@@ -49,7 +49,7 @@ export default function About({ data }: AboutProps) {
                 <Megaphone className="h-3 w-3 -rotate-12 fill-white" />
               </span>
               <span className="text-[12px] sm:text-[13px] font-extrabold uppercase tracking-wider text-[#374151]">
-                {data.badge || 'ABOUT US'}
+                {data.badge}
               </span>
             </motion.div>
 
@@ -73,8 +73,8 @@ export default function About({ data }: AboutProps) {
                   {/* Circular Avatar of Volunteers */}
                   <div className="relative z-10 h-13 w-13 sm:h-15 sm:w-15 md:h-16 md:w-16 rounded-full border-[3px] border-white shadow-lg overflow-hidden shrink-0 bg-[#e2e8f0]">
                     <img
-                      src={data.join_badge.avatars || '/about/get-involved-avatar.webp'}
-                      alt="Volunteers"
+                      src={data.join_badge.avatars}
+                      alt={data.join_badge.avatars_alt}
                       className="h-full w-full object-cover object-center"
                     />
                   </div>
@@ -82,7 +82,7 @@ export default function About({ data }: AboutProps) {
                   {/* Attached Get Involved Pill angled slightly */}
                   <div className="relative -ml-3.5 pl-5 pr-3.5 py-1.5 rounded-full bg-[#e8edf3] border border-white/90 shadow-md flex items-center gap-1.5 -rotate-3 hover:rotate-0 transition-transform">
                     <span className="text-[12px] sm:text-[13px] font-bold text-[#1e293b] whitespace-nowrap">
-                      {data.join_badge.text || 'Get Involved'}
+                      {data.join_badge.text}
                     </span>
                     <Send className="h-3 w-3 sm:h-3.5 sm:w-3.5 text-[#0284c7] -rotate-45 fill-[#0284c7]" />
                   </div>
@@ -98,7 +98,7 @@ export default function About({ data }: AboutProps) {
                   transition={{ duration: 0.55, delay: 0.12, ease: [0.22, 1, 0.36, 1] }}
                   className="block whitespace-nowrap"
                 >
-                  {data.title_line1 || 'A MOVEMENT'}
+                  {data.title_line1}
                 </motion.span>
                 
                 <motion.span
@@ -108,7 +108,7 @@ export default function About({ data }: AboutProps) {
                   transition={{ duration: 0.55, delay: 0.22, ease: [0.22, 1, 0.36, 1] }}
                   className="block whitespace-nowrap"
                 >
-                  {data.title_line2 || 'LED BY VALUES,'}
+                  {data.title_line2}
                 </motion.span>
 
                 <motion.span
@@ -118,7 +118,7 @@ export default function About({ data }: AboutProps) {
                   transition={{ duration: 0.55, delay: 0.32, ease: [0.22, 1, 0.36, 1] }}
                   className="block whitespace-nowrap"
                 >
-                  {data.title_line3 || 'POWERED BY'}
+                  {data.title_line3}
                 </motion.span>
 
                 <motion.span
@@ -128,7 +128,7 @@ export default function About({ data }: AboutProps) {
                   transition={{ duration: 0.55, delay: 0.42, ease: [0.22, 1, 0.36, 1] }}
                   className="block whitespace-nowrap"
                 >
-                  {data.title_line4 || 'PEOPLE'}
+                  {data.title_line4}
                 </motion.span>
               </h2>
             </div>

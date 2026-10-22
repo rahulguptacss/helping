@@ -8,7 +8,7 @@ interface TeamProps {
 }
 
 export default function Team({ data }: TeamProps) {
-  const members = data?.members || [];
+  const members = data.members;
 
   return (
     <section id="team" className="relative w-full overflow-hidden bg-[#f7f3ec] pt-6 sm:pt-8 lg:pt-10 pb-10 sm:pb-14 lg:pb-16">
@@ -28,7 +28,7 @@ export default function Team({ data }: TeamProps) {
           >
             <span className="w-8 sm:w-12 h-[1.5px] bg-[#1a5d3a]" />
             <span className="text-[11.5px] sm:text-[12.5px] font-bold tracking-[0.16em] uppercase text-[#1a5d3a]">
-              {data.eyebrow || 'OUR TEAM'}
+              {data.eyebrow}
             </span>
             <span className="w-8 sm:w-12 h-[1.5px] bg-[#1a5d3a]" />
           </motion.div>
@@ -41,7 +41,7 @@ export default function Team({ data }: TeamProps) {
             transition={{ duration: 0.6, delay: 0.08, ease: [0.22, 1, 0.36, 1] }}
             className="mt-1.5 sm:mt-2 font-serif text-[30px] xs:text-[34px] sm:text-[40px] md:text-[44px] font-bold text-[#113824] tracking-tight leading-tight"
           >
-            {data.title || 'Meet Our Dedicated Team'}
+            {data.title}
           </motion.h2>
 
           {/* Subtitle / Description (Reduced margin-top) */}
@@ -94,33 +94,32 @@ export default function Team({ data }: TeamProps) {
                   </p>
                 </div>
 
-                {/* Right: LinkedIn & Instagram Social Circles (Dark Green Borders) */}
+                {/* Right: Social Circles from data.json (member.socials) */}
                 <div className="flex items-center gap-1.5 shrink-0">
-                  {/* LinkedIn */}
-                  <a
-                    href="https://linkedin.com"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    aria-label={`${member.name} LinkedIn`}
-                    className="flex h-7.5 w-7.5 sm:h-8 sm:w-8 items-center justify-center rounded-full border-[1.5px] border-[#0d442d] text-[#0d442d] hover:bg-[#0d442d] hover:text-white transition-all duration-200"
-                  >
-                    <span className="font-bold text-[11px] sm:text-[12px] leading-none">in</span>
-                  </a>
-
-                  {/* Instagram */}
-                  <a
-                    href="https://instagram.com"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    aria-label={`${member.name} Instagram`}
-                    className="flex h-7.5 w-7.5 sm:h-8 sm:w-8 items-center justify-center rounded-full border-[1.5px] border-[#0d442d] text-[#0d442d] hover:bg-[#0d442d] hover:text-white transition-all duration-200"
-                  >
-                    <svg className="w-3.5 h-3.5 fill-none stroke-current stroke-[1.8]" viewBox="0 0 24 24">
-                      <rect x="2" y="2" width="20" height="20" rx="5" ry="5" />
-                      <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" />
-                      <line x1="17.5" y1="6.5" x2="17.51" y2="6.5" strokeWidth="2.5" />
-                    </svg>
-                  </a>
+                  {member.socials.map((social) => (
+                    <a
+                      key={social.name}
+                      href={social.href}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      aria-label={`${member.name} ${social.name}`}
+                      className="flex h-7.5 w-7.5 sm:h-8 sm:w-8 items-center justify-center rounded-full border-[1.5px] border-[#0d442d] text-[#0d442d] hover:bg-[#0d442d] hover:text-white transition-all duration-200"
+                    >
+                      {social.icon === 'linkedin' && (
+                        <span className="font-bold text-[11px] sm:text-[12px] leading-none">in</span>
+                      )}
+                      {social.icon === 'instagram' && (
+                        <svg className="w-3.5 h-3.5 fill-none stroke-current stroke-[1.8]" viewBox="0 0 24 24">
+                          <rect x="2" y="2" width="20" height="20" rx="5" ry="5" />
+                          <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" />
+                          <line x1="17.5" y1="6.5" x2="17.51" y2="6.5" strokeWidth="2.5" />
+                        </svg>
+                      )}
+                      {social.icon === 'facebook' && (
+                        <span className="font-bold text-[12px] sm:text-[13px] leading-none">f</span>
+                      )}
+                    </a>
+                  ))}
                 </div>
               </div>
             </motion.div>

@@ -1,5 +1,9 @@
 import data from '../data/data.json';
 
+/* =========================================================================
+   Common (Header / Footer / BackToTop)
+   ========================================================================= */
+
 export interface NavLinkItem {
   name: string;
   href: string;
@@ -18,11 +22,16 @@ export interface ContactInfo {
 
 export interface HeaderData {
   logo: string;
+  logo_link: string;
   logo_text: string;
   logo_subtext: string;
   links: NavLinkItem[];
   menu_button_text: string;
-  close_button_text?: string;
+  close_button_text: string;
+  menu_aria_labels: {
+    open: string;
+    close: string;
+  };
   donate_button_text?: string;
   donate_button_link?: string;
   contact_info?: ContactInfo;
@@ -36,16 +45,25 @@ export interface SocialItem {
 
 export interface FooterData {
   logo: string;
+  logo_link: string;
   logo_text: string;
   logo_subtext: string;
   description?: string;
-  contact_heading?: string;
+  contact_heading: string;
   nav_links: NavLinkItem[];
   contact_info: ContactInfo;
   social_heading: string;
   socials: SocialItem[];
-  copyright?: string;
+  copyright: string;
 }
+
+export interface BackToTopData {
+  aria_label: string;
+}
+
+/* =========================================================================
+   Home Sections
+   ========================================================================= */
 
 export interface HeroSectionData {
   title_line1: string;
@@ -75,6 +93,7 @@ export interface AboutSectionData {
   join_badge: {
     text: string;
     avatars: string;
+    avatars_alt: string;
   };
   description: string;
   image: string;
@@ -88,8 +107,8 @@ export interface CauseItem {
   tagline?: string;
   description: string;
   image: string;
-  category?: string;
-  href?: string;
+  category: string;
+  href: string;
 }
 
 export interface CausesFeatureItem {
@@ -103,17 +122,22 @@ export interface CausesSectionData {
   eyebrow: string;
   title: string;
   description?: string;
-  button?: {
+  button: {
     text: string;
     href: string;
   };
-  page_heading?: {
-    eyebrow?: string;
-    title_prefix?: string;
-    title_highlight?: string;
+  read_more_text: string;
+  empty_text: string;
+  page_heading: {
+    eyebrow: string;
+    title_prefix: string;
+    title_highlight: string;
     description?: string;
   };
-  categories?: string[];
+  /** First entry is treated as the "show all" filter */
+  categories: string[];
+  /** Accessible label for the mobile filter dropdown */
+  filter_label: string;
   items: CauseItem[];
   why_support?: {
     eyebrow?: string;
@@ -143,13 +167,14 @@ export interface TestimonialItem {
 }
 
 export interface TestimonialsSectionData {
-  quote?: string;
-  author?: string;
-  role?: string;
   image: string;
   image_alt: string;
   items: TestimonialItem[];
 }
+
+/* =========================================================================
+   Pages
+   ========================================================================= */
 
 export interface PageComponentItem {
   key: string;
@@ -158,39 +183,67 @@ export interface PageComponentItem {
 
 export type PageComponent = PageComponentItem;
 
-export interface PageMeta {
+export interface PageMetadata {
   title: string;
-  pageName: string;
-  metadata: {
-    title: string;
-    description: string;
-  };
-  components?: PageComponentItem[];
-  [key: string]: any;
-}
-
-export interface BreadcrumbLink {
-  name: string;
-  href?: string;
+  description: string;
+  /** e.g. "%s | Helping Hands" — `%s` is replaced with the dynamic title */
+  title_template?: string;
 }
 
 export interface BreadcrumbData {
   title: string;
-  breadcrumb?: string;
-  path?: string;
-  links?: BreadcrumbLink[];
-  image?: string;
-  bottom_shape?: string;
+  /** Slash separated trail, e.g. "Home / About Us" */
+  path: string;
+  /** Used on dynamic pages: final trail = `${path_prefix} / ${dynamic title}` */
+  path_prefix?: string;
+  image: string;
+  bottom_shape: string;
 }
 
-export interface AboutStoryData {
+export interface PageMeta {
   title: string;
-  paragraphs: string[];
-  image: string;
-  image_alt?: string;
-  gallery?: AboutGalleryItem[];
-  items?: AboutGalleryItem[];
+  pageName: string;
+  metadata: PageMetadata;
+  breadcrumb?: BreadcrumbData;
+  components: PageComponentItem[];
 }
+
+/** Pages that render a breadcrumb banner always define one in data.json */
+export interface PageWithBreadcrumb extends PageMeta {
+  breadcrumb: BreadcrumbData;
+}
+
+export type AboutPageData = PageWithBreadcrumb;
+export type TeamPageData = PageWithBreadcrumb;
+export type GalleryPageData = PageWithBreadcrumb;
+export type ContactPageData = PageWithBreadcrumb;
+export type FaqPageData = PageWithBreadcrumb;
+export type CausesPageData = PageWithBreadcrumb;
+export type CausesDetailsPageData = PageWithBreadcrumb;
+export type BlogPageData = PageWithBreadcrumb;
+export type BlogDetailsPageData = PageWithBreadcrumb;
+
+export interface ButtonLink {
+  text: string;
+  href: string;
+}
+
+export interface NotFoundPageData {
+  title: string;
+  pageName: string;
+  metadata: PageMetadata;
+  code: string;
+  eyebrow: string;
+  heading: string;
+  description: string;
+  background_image: string;
+  primary_button: ButtonLink;
+  secondary_button: ButtonLink;
+}
+
+/* =========================================================================
+   About / Team / Gallery
+   ========================================================================= */
 
 export interface AboutGalleryItem {
   id: string;
@@ -198,11 +251,12 @@ export interface AboutGalleryItem {
   alt: string;
 }
 
-export interface AboutPageData extends PageMeta {
-  breadcrumb?: BreadcrumbData;
-  story?: AboutStoryData;
-  gallery?: AboutGalleryItem[];
-  components?: PageComponentItem[];
+export interface AboutStoryData {
+  title: string;
+  paragraphs: string[];
+  image: string;
+  image_alt: string;
+  gallery: AboutGalleryItem[];
 }
 
 export interface TeamMemberSocial {
@@ -216,20 +270,14 @@ export interface TeamMember {
   name: string;
   role: string;
   image: string;
-  socials?: TeamMemberSocial[];
+  socials: TeamMemberSocial[];
 }
 
 export interface TeamSectionData {
-  eyebrow?: string;
+  eyebrow: string;
   title: string;
   description?: string;
   members: TeamMember[];
-}
-
-export interface TeamPageData extends PageMeta {
-  breadcrumb?: BreadcrumbData;
-  team?: TeamSectionData;
-  components?: PageComponentItem[];
 }
 
 export interface GalleryItem {
@@ -238,29 +286,36 @@ export interface GalleryItem {
   image: string;
   category: string;
   categories?: string[];
-  aspect?: string;
-  flex?: number;
-  column?: number;
+  aspect: string;
+  flex: number;
+  column: number;
   alt?: string;
 }
 
 export interface GallerySectionData {
-  eyebrow?: string;
+  eyebrow: string;
   title: string;
   description?: string;
+  /** First entry is treated as the "show all" filter */
   categories: string[];
-  load_more_button?: {
+  /** Accessible label for the mobile filter dropdown */
+  filter_label: string;
+  load_more_button: {
     text: string;
+    loaded_text: string;
     icon?: string;
+  };
+  lightbox_labels: {
+    close: string;
+    previous: string;
+    next: string;
   };
   items: GalleryItem[];
 }
 
-export interface GalleryPageData extends PageMeta {
-  breadcrumb?: BreadcrumbData;
-  gallery?: GallerySectionData;
-  components?: PageComponentItem[];
-}
+/* =========================================================================
+   Contact / FAQ
+   ========================================================================= */
 
 export interface ContactCardItem {
   id: string;
@@ -269,49 +324,53 @@ export interface ContactCardItem {
   details: string[];
 }
 
+export interface ContactInputField {
+  label: string;
+  placeholder: string;
+}
+
 export interface ContactFormData {
-  eyebrow?: string;
-  title_prefix?: string;
-  title_highlight?: string;
-  description?: string;
-  inputs?: {
-    name?: { label?: string; placeholder?: string };
-    email?: { label?: string; placeholder?: string };
-    phone?: { label?: string; placeholder?: string };
-    subject?: { label?: string; placeholder?: string; options?: string[] };
-    message?: { label?: string; placeholder?: string };
+  eyebrow: string;
+  title_prefix: string;
+  title_highlight: string;
+  description: string;
+  inputs: {
+    name: ContactInputField;
+    email: ContactInputField;
+    phone: ContactInputField;
+    subject: ContactInputField & { options: string[] };
+    message: ContactInputField;
   };
-  submit_button?: { text: string; icon?: string };
+  submit_button: { text: string; icon?: string };
+  submitting_text: string;
+  success_message: string;
 }
 
 export interface ContactBannerData {
   image: string;
-  quote?: string;
+  image_alt: string;
+  quote: string;
 }
 
 export interface ContactMapData {
-  image?: string;
-  embed_url?: string;
-  location_name?: string;
-  address?: string;
-  directions_url?: string;
+  embed_url: string;
+  iframe_title: string;
+  location_name: string;
+  address: string;
+  directions_url: string;
+  directions_text: string;
+  view_larger_text: string;
 }
 
 export interface ContactSectionData {
-  eyebrow?: string;
-  title_prefix?: string;
-  title_highlight?: string;
+  eyebrow: string;
+  title_prefix: string;
+  title_highlight: string;
   description?: string;
   cards: ContactCardItem[];
   form: ContactFormData;
   banner: ContactBannerData;
-  map?: ContactMapData;
-}
-
-export interface ContactPageData extends PageMeta {
-  breadcrumb?: BreadcrumbData;
-  contact?: ContactSectionData;
-  components?: PageComponentItem[];
+  map: ContactMapData;
 }
 
 export interface FaqItem {
@@ -322,26 +381,18 @@ export interface FaqItem {
 }
 
 export interface FaqSectionData {
-  eyebrow?: string;
-  title_prefix?: string;
-  title_highlight?: string;
+  eyebrow: string;
+  title_prefix: string;
+  title_highlight: string;
   description?: string;
-  image?: string;
-  image_alt?: string;
+  image: string;
+  image_alt: string;
   items: FaqItem[];
 }
 
-export interface FaqPageData extends PageMeta {
-  breadcrumb?: BreadcrumbData;
-  faq?: FaqSectionData;
-  components?: PageComponentItem[];
-}
-
-export interface CausesPageData extends PageMeta {
-  breadcrumb?: BreadcrumbData;
-  causes?: CausesSectionData;
-  components?: PageComponentItem[];
-}
+/* =========================================================================
+   Cause Details
+   ========================================================================= */
 
 export interface CauseDetailsImpactItem {
   value: string;
@@ -356,7 +407,7 @@ export interface CauseDetailsStepItem {
 }
 
 export interface CauseDetailsSectionData {
-  slug?: string;
+  slug: string;
   badge: string;
   title: string;
   description: string;
@@ -381,13 +432,17 @@ export interface CauseDetailsSectionData {
   };
 }
 
+/* =========================================================================
+   Blog
+   ========================================================================= */
+
 export interface BlogItem {
   id: string;
   slug: string;
   title: string;
   category?: string;
   date: string;
-  comments_count?: string;
+  comments_count: string;
   author?: string;
   image: string;
   excerpt: string;
@@ -402,12 +457,27 @@ export interface RecentPostItem {
   href: string;
 }
 
+export interface BlogDetailLabels {
+  author_prefix: string;
+  inset_image_alt: string;
+  back_link: {
+    text: string;
+    href: string;
+  };
+}
+
 export interface BlogsSectionData {
   eyebrow?: string;
   title?: string;
-  recent_posts_heading?: string;
+  recent_posts_heading: string;
+  read_more_text: string;
+  pagination_labels: {
+    previous: string;
+    next: string;
+  };
+  detail: BlogDetailLabels;
   items: BlogItem[];
-  recent_posts?: RecentPostItem[];
+  recent_posts: RecentPostItem[];
 }
 
 export interface BlogQuoteData {
@@ -433,66 +503,45 @@ export interface BlogDetailData {
   closing_text?: string;
 }
 
-export interface BlogPageData extends PageMeta {
-  breadcrumb?: BreadcrumbData;
-  blogs?: BlogsSectionData;
-  components?: PageComponentItem[];
-}
-
-export interface BlogDetailsPageData extends PageMeta {
-  breadcrumb?: BreadcrumbData;
-  blog_detail?: BlogDetailData;
-  components?: PageComponentItem[];
-}
-
-export interface CausesDetailsPageData extends PageMeta {
-  breadcrumb?: BreadcrumbData;
-  cause_details?: CauseDetailsSectionData;
-  components?: PageComponentItem[];
-}
+/* =========================================================================
+   Root Data Shape
+   ========================================================================= */
 
 export interface SectionsData {
   hero: HeroSectionData;
   about: AboutSectionData;
   causes: CausesSectionData;
+  causes_details: CauseDetailsSectionData[];
   stats: StatsSectionData;
   testimonials: TestimonialsSectionData;
-  breadcrumb?: BreadcrumbData;
-  our_story?: AboutStoryData;
-  story?: AboutStoryData;
-  about_gallery?: { items: AboutGalleryItem[] } | AboutGalleryItem[];
-  gallery?: GallerySectionData | AboutGalleryItem[] | any;
-  gallery_section?: GallerySectionData;
-  team?: TeamSectionData;
-  contact?: ContactSectionData;
-  faq?: FaqSectionData;
-  cause_details?: CauseDetailsSectionData;
-  causes_details?: CauseDetailsSectionData[];
-  blogs?: BlogsSectionData;
-  blog_details?: BlogDetailData[];
-  [key: string]: any;
+  our_story: AboutStoryData;
+  team: TeamSectionData;
+  gallery: GallerySectionData;
+  contact: ContactSectionData;
+  faq: FaqSectionData;
+  blogs: BlogsSectionData;
+  blog_details: BlogDetailData[];
 }
 
 export interface SiteCommonData {
   Header: HeaderData;
   Footer: FooterData;
+  BackToTop: BackToTopData;
 }
 
 export interface SiteTemplateData {
   pages: {
     home: PageMeta;
-    about?: AboutPageData;
-    team?: TeamPageData;
-    gallery?: GalleryPageData;
-    contact?: ContactPageData;
-    faq?: FaqPageData;
-    faqs?: FaqPageData;
-    causes?: CausesPageData;
-    our_causes?: CausesPageData;
-    causes_details?: CausesDetailsPageData;
-    blog?: BlogPageData;
-    blog_detail?: BlogDetailsPageData;
-    [key: string]: any;
+    about: AboutPageData;
+    team: TeamPageData;
+    gallery: GalleryPageData;
+    contact: ContactPageData;
+    faq: FaqPageData;
+    causes: CausesPageData;
+    causes_details: CausesDetailsPageData;
+    blog: BlogPageData;
+    blog_detail: BlogDetailsPageData;
+    not_found: NotFoundPageData;
   };
   sections: SectionsData;
 }
@@ -501,10 +550,8 @@ export interface SiteCategoriesData {
   NGO: {
     templateComponents: {
       'template-1': SiteTemplateData;
-      [key: string]: any;
     };
   };
-  [key: string]: any;
 }
 
 export interface SiteData {
@@ -512,63 +559,53 @@ export interface SiteData {
   categories: SiteCategoriesData;
 }
 
-export const siteJson = data as unknown as SiteData;
+/**
+ * No `as unknown` cast: TypeScript validates data.json against `SiteData`
+ * at compile time, so a missing/renamed field in the JSON is a build error.
+ */
+export const siteJson: SiteData = data;
 export const common = siteJson.common;
 export const template = siteJson.categories.NGO.templateComponents['template-1'];
 export const pages = template.pages;
 export const sections = template.sections;
 
+/* =========================================================================
+   Helpers
+   ========================================================================= */
+
 export function toSlug(title: string): string {
   return title.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '');
 }
 
+/** Replaces `%s` in a JSON title template, e.g. "%s | Helping Hands" */
+export function applyTitleTemplate(template: string | undefined, value: string): string {
+  return template ? template.replace('%s', value) : value;
+}
+
+/** Returns `undefined` for unknown slugs so the page can render a real 404 */
 export function getCauseBySlug(slug: string): CauseDetailsSectionData | undefined {
   const normalized = toSlug(slug);
-  const list: CauseDetailsSectionData[] =
-    (sections as unknown as { causes_details?: CauseDetailsSectionData[] }).causes_details || [];
-  return (
-    list.find(
-      (c) =>
-        c.slug === slug ||
-        toSlug(c.slug || '') === normalized ||
-        toSlug(c.badge || '') === normalized ||
-        toSlug(c.title || '') === normalized
-    ) ||
-    (sections as unknown as { cause_details?: CauseDetailsSectionData }).cause_details ||
-    list[0]
+  return sections.causes_details.find(
+    (c) =>
+      c.slug === slug ||
+      toSlug(c.slug) === normalized ||
+      toSlug(c.badge) === normalized ||
+      toSlug(c.title) === normalized
   );
 }
 
 export function getAllCauseSlugs(): string[] {
-  const list: CauseDetailsSectionData[] =
-    (sections as unknown as { causes_details?: CauseDetailsSectionData[] }).causes_details || [];
-  const slugs = list.map((c) => c.slug || toSlug(c.badge)).filter(Boolean);
-  if (slugs.length === 0) {
-    slugs.push('education');
-  }
-  return slugs;
+  return sections.causes_details.map((c) => c.slug || toSlug(c.badge)).filter(Boolean);
 }
 
+/** Returns `undefined` for unknown slugs so the page can render a real 404 */
 export function getBlogBySlug(slug: string): BlogDetailData | undefined {
   const normalized = toSlug(slug);
-  const list: BlogDetailData[] =
-    (sections as unknown as { blog_details?: BlogDetailData[] }).blog_details || [];
-  return (
-    list.find(
-      (b) =>
-        b.slug === slug ||
-        toSlug(b.slug || '') === normalized ||
-        toSlug(b.title || '') === normalized
-    ) || list[0]
+  return sections.blog_details.find(
+    (b) => b.slug === slug || toSlug(b.slug) === normalized || toSlug(b.title) === normalized
   );
 }
 
 export function getAllBlogSlugs(): string[] {
-  const list: BlogDetailData[] =
-    (sections as unknown as { blog_details?: BlogDetailData[] }).blog_details || [];
-  const slugs = list.map((b) => b.slug || toSlug(b.title)).filter(Boolean);
-  if (slugs.length === 0) {
-    slugs.push('learn-exactly-how-we-made-event');
-  }
-  return slugs;
+  return sections.blog_details.map((b) => b.slug || toSlug(b.title)).filter(Boolean);
 }

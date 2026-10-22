@@ -10,32 +10,22 @@ import Footer from '../components/sections/Footer';
 import BackToTop from '../components/ui/BackToTop';
 import { common, pages, sections, type PageComponent } from '@/components/types';
 
+const pageData = pages.home;
+
 export const metadata: Metadata = {
-  title: pages.home?.metadata?.title || 'Helping Hands | NGO for a Better Tomorrow',
-  description: pages.home?.metadata?.description || 'Small Help, Big Smiles, Brighter Futures. Join our movement led by values, powered by people.',
+  title: pageData.metadata.title,
+  description: pageData.metadata.description,
 };
 
 export default function HomePage() {
+  // Keyed by the `component` name used in data.json -> pages.home.components
   const sectionMap: Record<string, React.ReactNode> = {
     Hero: <Hero data={sections.hero} />,
-    HeroSection: <Hero data={sections.hero} />,
     About: <About data={sections.about} />,
-    AboutSection: <About data={sections.about} />,
     Causes: <Causes data={sections.causes} />,
-    CausesSection: <Causes data={sections.causes} />,
     Stats: <Stats data={sections.stats} />,
-    StatsSection: <Stats data={sections.stats} />,
     Testimonials: <Testimonials data={sections.testimonials} />,
-    TestimonialsSection: <Testimonials data={sections.testimonials} />,
   };
-
-  const components: PageComponent[] = pages.home?.components || [
-    { key: 'HeroSection', component: 'Hero' },
-    { key: 'AboutSection', component: 'About' },
-    { key: 'CausesSection', component: 'Causes' },
-    { key: 'StatsSection', component: 'Stats' },
-    { key: 'TestimonialsSection', component: 'Testimonials' },
-  ];
 
   return (
     <main className="flex min-h-screen flex-col bg-white">
@@ -43,21 +33,15 @@ export default function HomePage() {
       <Header data={common.Header} />
 
       {/* 2. Dynamic Sections called from data.json */}
-      {components.map((block: PageComponent) => {
-        const componentElement = sectionMap[block.component] || sectionMap[block.key];
-        if (!componentElement) return null;
-        return (
-          <React.Fragment key={block.key}>
-            {componentElement}
-          </React.Fragment>
-        );
-      })}
+      {pageData.components.map((block: PageComponent) => (
+        <React.Fragment key={block.key}>{sectionMap[block.component] ?? null}</React.Fragment>
+      ))}
 
       {/* 3. Footer */}
       <Footer data={common.Footer} />
 
       {/* Back to Top */}
-      <BackToTop />
+      <BackToTop data={common.BackToTop} />
     </main>
   );
 }

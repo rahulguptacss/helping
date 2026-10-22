@@ -23,7 +23,8 @@ export default function Hero({ data }: HeroProps) {
               <div className="pointer-events-none absolute inset-0 overflow-hidden">
                 <img
                   src={data.bg_watermark}
-                  alt="Holding hands texture"
+                  alt=""
+                  aria-hidden="true"
                   className="h-full w-full object-cover object-center opacity-65 scale-105"
                 />
                 <div className="absolute inset-0 bg-gradient-to-r from-[#017949]/50 via-[#017949]/30 to-[#017949]/60" />
@@ -39,9 +40,9 @@ export default function Hero({ data }: HeroProps) {
                 transition={{ duration: 0.65, ease: [0.22, 1, 0.36, 1] }}
                 className="font-condensed text-[44px] xs:text-[52px] sm:text-[66px] md:text-[76px] lg:text-[82px] xl:text-[92px] font-extrabold tracking-tight leading-[0.96] text-white"
               >
-                <span className="block">{data.title_line1 || 'Small Help'}</span>
-                <span className="block">{data.title_line2 || 'Big Smiles'}</span>
-                <span className="block">{data.title_line3 || 'Brighter Futures!'}</span>
+                <span className="block">{data.title_line1}</span>
+                <span className="block">{data.title_line2}</span>
+                <span className="block">{data.title_line3}</span>
               </motion.h1>
 
               {/* CTA Button: White Clean Rectangle with Green Heart (Matching Screenshot) */}
@@ -52,11 +53,11 @@ export default function Hero({ data }: HeroProps) {
                 className="mt-7 sm:mt-9 lg:mt-10"
               >
                 <Link
-                  href={data.button.href || '#contact'}
+                  href={data.button.href}
                   className="group inline-flex items-center gap-2.5 rounded-[3px] bg-white px-6 py-2.5 sm:px-7 sm:py-3 text-[14px] sm:text-[15px] font-extrabold text-[#006837] shadow-md transition-all duration-300 hover:bg-white/95 hover:shadow-lg hover:scale-[1.02] active:scale-95"
                 >
                   <Heart className="h-4 w-4 sm:h-4.5 sm:w-4.5 fill-[#006837] text-[#006837] transition-transform duration-300 group-hover:scale-115" />
-                  <span>{data.button.text || 'Contact Us'}</span>
+                  <span>{data.button.text}</span>
                 </Link>
               </motion.div>
             </div>
@@ -71,8 +72,8 @@ export default function Hero({ data }: HeroProps) {
               className="h-full w-full"
             >
               <img
-                src={data.image || '/hero/hero.webp'}
-                alt={data.image_alt || 'Smiling Children'}
+                src={data.image}
+                alt={data.image_alt}
                 className="h-full w-full object-cover object-center"
               />
             </motion.div>

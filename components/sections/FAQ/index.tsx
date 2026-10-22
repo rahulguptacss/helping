@@ -9,16 +9,14 @@ interface FAQProps {
 }
 
 export default function FAQ({ data }: FAQProps) {
-  // Default first item open as shown in the screenshot
-  const [openId, setOpenId] = useState<string | null>(
-    data?.items?.[0]?.id || 'faq-1'
-  );
+  // First FAQ item from data.json is open by default
+  const [openId, setOpenId] = useState<string | null>(data.items[0]?.id ?? null);
 
   const toggleItem = (id: string) => {
     setOpenId((prev) => (prev === id ? null : id));
   };
 
-  const items = data?.items || [];
+  const items = data.items;
 
   return (
     <section id="faqs" className="relative w-full overflow-hidden bg-[#faf8f4] py-12 sm:py-16 md:py-20 lg:py-24">
@@ -41,21 +39,22 @@ export default function FAQ({ data }: FAQProps) {
               {/* Eyebrow: FAQ'S SECTION — */}
               <div className="flex items-center gap-2">
                 <span className="text-[11.5px] sm:text-[12.5px] font-bold tracking-[0.16em] uppercase text-[#1a5d3a]">
-                  {data?.eyebrow || "FAQ'S SECTION —"}
+                  {data.eyebrow}
                 </span>
               </div>
 
               {/* Main Heading: Frequently Asked Questions */}
               <h2 className="mt-2 font-serif text-[30px] xs:text-[34px] sm:text-[40px] md:text-[44px] font-bold text-[#113824] tracking-tight leading-[1.16]">
-                <span>{data?.title_prefix || 'Frequently Asked '}</span>
-                <span className="text-[#2a8342]">{data?.title_highlight || 'Questions'}</span>
+                <span>{data.title_prefix}</span>
+                <span className="text-[#2a8342]">{data.title_highlight}</span>
               </h2>
 
               {/* Subtitle Description */}
-              <p className="mt-3 sm:mt-4 text-[13px] sm:text-[14px] leading-relaxed text-[#55635b] max-w-[440px]">
-                {data?.description ||
-                  'Find answers to the most common questions about our work, donations, volunteering opportunities, and how you can make a difference with Helping Hands.'}
-              </p>
+              {data.description && (
+                <p className="mt-3 sm:mt-4 text-[13px] sm:text-[14px] leading-relaxed text-[#55635b] max-w-[440px]">
+                  {data.description}
+                </p>
+              )}
             </div>
 
             {/* Illustration Image: /img/faq.webp */}
@@ -68,8 +67,8 @@ export default function FAQ({ data }: FAQProps) {
                 className="relative max-w-[380px] sm:max-w-[420px] w-full"
               >
                 <img
-                  src={data?.image || '/img/faq.webp'}
-                  alt={data?.image_alt || 'Helping Hands Volunteer with Child'}
+                  src={data.image}
+                  alt={data.image_alt}
                   className="w-full h-auto object-contain select-none drop-shadow-sm hover:scale-[1.02] transition-transform duration-500 ease-out"
                 />
               </motion.div>

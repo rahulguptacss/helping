@@ -3,29 +3,32 @@
 import React, { useState, useMemo } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import type { GallerySectionData, GalleryItem } from '@/components/types';
+import FilterDropdown from '@/components/ui/FilterDropdown';
 
 interface GalleryProps {
   data: GallerySectionData;
 }
 
 export default function Gallery({ data }: GalleryProps) {
-  const [activeCategory, setActiveCategory] = useState<string>('All');
+  // Category filters from data.json; the first entry acts as "show all"
+  const categories = data.categories;
+  const allCategory = categories[0];
+  const [activeCategory, setActiveCategory] = useState<string>(allCategory);
   const [selectedImage, setSelectedImage] = useState<GalleryItem | null>(null);
   const [isLoadingMore, setIsLoadingMore] = useState<boolean>(false);
   const [hasLoadedExtra, setHasLoadedExtra] = useState<boolean>(false);
 
-  const categories = data?.categories || ['All', 'Events', 'Volunteers', 'Children', 'Community', 'Medical'];
-  const rawItems = data?.items || [];
+  const rawItems = data.items;
 
   // Filter items based on activeCategory
   const filteredItems = useMemo(() => {
-    if (activeCategory === 'All') return rawItems;
+    if (activeCategory === allCategory) return rawItems;
     return rawItems.filter((item) => {
       if (item.category?.toLowerCase() === activeCategory.toLowerCase()) return true;
       if (item.categories?.some((c) => c.toLowerCase() === activeCategory.toLowerCase())) return true;
       return false;
     });
-  }, [activeCategory, rawItems]);
+  }, [activeCategory, allCategory, rawItems]);
 
   // Handle Load More click
   const handleLoadMore = () => {
@@ -79,7 +82,7 @@ export default function Gallery({ data }: GalleryProps) {
               transition={{ duration: 0.5, delay: 0.1, ease: 'easeOut' }}
               className="text-[11px] sm:text-[12.5px] font-bold tracking-[0.16em] uppercase text-[#1a5d3a]"
             >
-              {data.eyebrow || 'OUR GALLERY'}
+              {data.eyebrow}
             </motion.span>
             <motion.span
               initial={{ scaleX: 0 }}
@@ -98,7 +101,7 @@ export default function Gallery({ data }: GalleryProps) {
             transition={{ duration: 0.6, delay: 0.12, ease: [0.22, 1, 0.36, 1] }}
             className="mt-2 sm:mt-2.5 font-serif text-[28px] xs:text-[32px] sm:text-[38px] md:text-[44px] font-bold text-[#113824] tracking-tight leading-tight"
           >
-            {data.title || 'Moments That Make a Difference'}
+            {data.title}
           </motion.h2>
 
           {/* Subtitle / Description */}
@@ -115,14 +118,21 @@ export default function Gallery({ data }: GalleryProps) {
           )}
 
           {/* ========================================================
-              Filter Buttons: Pills matching screenshot
+              Filter: Dropdown on mobile, Pills on md+
               ======================================================== */}
+          <FilterDropdown
+            className="mt-5 sm:mt-6 md:hidden"
+            options={categories}
+            value={activeCategory}
+            onChange={setActiveCategory}
+            label={data.filter_label}
+          />
           <motion.div
             initial={{ opacity: 0, y: 14 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5, delay: 0.25 }}
-            className="mt-5 sm:mt-6 md:mt-7 flex flex-wrap items-center justify-center gap-1.5 sm:gap-2.5 max-w-full"
+            className="mt-5 sm:mt-6 md:mt-7 hidden md:flex flex-wrap items-center justify-center gap-1.5 sm:gap-2.5 max-w-full"
           >
             {categories.map((cat) => {
               const isActive = activeCategory.toLowerCase() === cat.toLowerCase();
@@ -150,11 +160,11 @@ export default function Gallery({ data }: GalleryProps) {
             Gallery Grid: 4-Column Masonry with Perfectly Level Bottom Row
             ======================================================== */}
         <div className="mt-6 sm:mt-8 md:mt-9">
-          {activeCategory === 'All' ? (
+          {activeCategory === allCategory ? (
             /* Screenshot-Accurate 4-Column Masonry Layout: Bottom row perfectly aligned */
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-3.5 md:gap-4 items-start w-full">
               {[1, 2, 3, 4].map((colNum) => {
-                const colItems = rawItems.filter((it: any) => it.column === colNum);
+                const colItems = rawItems.filter((it) => it.column === colNum);
                 return (
                   <div key={colNum} className="gallery-col-desktop flex flex-col gap-3 sm:gap-3.5 md:gap-4 w-full">
                     {colItems.map((item, idx) => (
@@ -167,8 +177,8 @@ export default function Gallery({ data }: GalleryProps) {
                         whileHover={{ y: -4, transition: { duration: 0.25 } }}
                         onClick={() => setSelectedImage(item)}
                         style={{
-                          '--card-flex': item.flex || 100,
-                          '--card-aspect': item.aspect || '4/3',
+                          '--card-flex': item.flex,
+                          '--card-aspect': item.aspect,
                         } as React.CSSProperties}
                         className="gallery-card-flex group relative cursor-pointer overflow-hidden rounded-[14px] sm:rounded-[18px] bg-[#e6dfd5] shadow-[0_3px_12px_rgba(0,0,0,0.04)] hover:shadow-[0_10px_26px_rgba(0,0,0,0.12)] transition-shadow duration-300 min-h-0 w-full"
                       >
@@ -176,7 +186,7 @@ export default function Gallery({ data }: GalleryProps) {
                           whileHover={{ scale: 1.05 }}
                           transition={{ duration: 0.45, ease: 'easeOut' }}
                           src={item.image}
-                          alt={item.title || 'Gallery image'}
+                          alt={item.alt ?? item.title}
                           className="w-full h-full object-cover block select-none"
                           loading="lazy"
                         />
@@ -212,14 +222,14 @@ export default function Gallery({ data }: GalleryProps) {
                     transition={{ duration: 0.4, delay: idx * 0.04 }}
                     whileHover={{ y: -4, transition: { duration: 0.25 } }}
                     onClick={() => setSelectedImage(item)}
-                    style={{ aspectRatio: item.aspect || '4/3' }}
+                    style={{ aspectRatio: item.aspect }}
                     className="group relative cursor-pointer overflow-hidden rounded-[14px] sm:rounded-[18px] bg-[#e6dfd5] shadow-[0_3px_12px_rgba(0,0,0,0.04)] hover:shadow-[0_10px_26px_rgba(0,0,0,0.12)] transition-shadow duration-300 w-full"
                   >
                     <motion.img
                       whileHover={{ scale: 1.05 }}
                       transition={{ duration: 0.45, ease: 'easeOut' }}
                       src={item.image}
-                      alt={item.title || 'Gallery image'}
+                      alt={item.alt ?? item.title}
                       className="w-full h-full object-cover block select-none"
                       loading="lazy"
                     />
@@ -250,7 +260,7 @@ export default function Gallery({ data }: GalleryProps) {
             transition={{ duration: 0.2 }}
             className="group flex items-center gap-2 px-6 sm:px-7 py-2.5 sm:py-2.5 rounded-full bg-[#113824] hover:bg-[#0d2e1d] text-white text-[12.5px] sm:text-[13.5px] font-medium shadow-[0_4px_14px_rgba(17,56,36,0.2)] transition-all duration-200"
           >
-            <span>{hasLoadedExtra ? 'All Photos Loaded' : (data.load_more_button?.text || 'Load More')}</span>
+            <span>{hasLoadedExtra ? data.load_more_button.loaded_text : data.load_more_button.text}</span>
             <svg
               className={`w-3.5 h-3.5 stroke-current stroke-[2] fill-none transition-transform duration-500 ${
                 isLoadingMore ? 'animate-spin' : 'group-hover:rotate-180'
@@ -298,7 +308,7 @@ export default function Gallery({ data }: GalleryProps) {
                 <button
                   onClick={() => setSelectedImage(null)}
                   className="p-1 rounded-full text-white/70 hover:text-white hover:bg-white/10 transition-colors"
-                  aria-label="Close modal"
+                  aria-label={data.lightbox_labels.close}
                 >
                   <svg className="w-5 h-5 stroke-current stroke-[2] fill-none" viewBox="0 0 24 24">
                     <line x1="18" y1="6" x2="6" y2="18" />
@@ -319,7 +329,7 @@ export default function Gallery({ data }: GalleryProps) {
                 <button
                   onClick={handlePrev}
                   className="absolute left-3 top-1/2 -translate-y-1/2 p-2 rounded-full bg-black/50 text-white/80 hover:text-white hover:bg-black/80 transition-colors"
-                  aria-label="Previous image"
+                  aria-label={data.lightbox_labels.previous}
                 >
                   <svg className="w-5 h-5 stroke-current stroke-[2.5] fill-none" viewBox="0 0 24 24">
                     <polyline points="15 18 9 12 15 6" />
@@ -330,7 +340,7 @@ export default function Gallery({ data }: GalleryProps) {
                 <button
                   onClick={handleNext}
                   className="absolute right-3 top-1/2 -translate-y-1/2 p-2 rounded-full bg-black/50 text-white/80 hover:text-white hover:bg-black/80 transition-colors"
-                  aria-label="Next image"
+                  aria-label={data.lightbox_labels.next}
                 >
                   <svg className="w-5 h-5 stroke-current stroke-[2.5] fill-none" viewBox="0 0 24 24">
                     <polyline points="9 18 15 12 9 6" />
