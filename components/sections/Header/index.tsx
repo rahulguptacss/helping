@@ -3,14 +3,240 @@
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
-import { Mail, Phone } from 'lucide-react';
-import type { HeaderData } from '@/components/types';
+import { usePathname } from 'next/navigation';
+import { Mail, Phone, ChevronDown, ArrowRight } from 'lucide-react';
+import { motion, AnimatePresence } from 'framer-motion';
+import type { HeaderData, NavLinkItem } from '@/components/types';
 
 interface HeaderProps {
   data: HeaderData;
 }
 
+/** Fullscreen Curtain Navigation Item — supports direct links, Level 1 dropdowns, and Level 2 nested dropdowns */
+function CurtainNavItem({
+  link,
+  idx,
+  isOpen,
+  totalLinks,
+  onClose,
+  isActive,
+}: {
+  link: NavLinkItem;
+  idx: number;
+  isOpen: boolean;
+  totalLinks: number;
+  onClose: () => void;
+  isActive: (href: string) => boolean;
+}) {
+  const [expanded, setExpanded] = useState(false);
+  const [subExpanded, setSubExpanded] = useState<Record<string, boolean>>({});
+  const hasChildren = Boolean(link.children && link.children.length > 0);
+  const active = isActive(link.href);
+
+  // Reset expanded accordions when menu closes
+  useEffect(() => {
+    if (!isOpen) {
+      setExpanded(false);
+      setSubExpanded({});
+    }
+  }, [isOpen]);
+
+  const toggleSub = (name: string) => {
+    setSubExpanded((prev) => ({ ...prev, [name]: !prev[name] }));
+  };
+
+  const delayStyle = {
+    transitionDelay: isOpen
+      ? `${0.26 + idx * 0.06}s`
+      : `${(totalLinks - 1 - idx) * 0.03}s`,
+  };
+
+  if (!hasChildren) {
+    return (
+      <li className="motorsport-nav-li flex items-center justify-center w-full">
+        <div className="overflow-hidden py-0.5 sm:py-1">
+          <Link
+            href={link.href}
+            onClick={onClose}
+            style={delayStyle}
+            className={`motorsport-nav-link group flex items-center gap-2 sm:gap-3 text-[1.3rem] sm:text-[1.65rem] md:text-[1.95rem] lg:text-[2.25rem] font-bold uppercase tracking-tight leading-snug transition-all duration-300 active:scale-95 ${
+              active ? 'text-[#a3e635]' : 'text-white hover:text-white'
+            }`}
+          >
+            {/* Index Number */}
+            <span
+              className={`text-[9px] sm:text-[10px] md:text-[11px] font-semibold font-mono tracking-widest transition-all duration-300 ${
+                active ? 'text-[#a3e635] opacity-100' : 'text-[#a3e635] opacity-60 group-hover:opacity-100'
+              }`}
+            >
+              {link.number || String(idx + 1).padStart(2, '0')}
+            </span>
+
+            {/* Link Text */}
+            <span className="relative inline-block transition-transform duration-300 group-hover:translate-x-1.5">
+              {link.name}
+            </span>
+
+            {/* Arrow Indicator on Hover */}
+            <span className="hidden sm:inline-block text-xs sm:text-sm md:text-base opacity-0 -translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300 text-[#a3e635]">
+              →
+            </span>
+          </Link>
+        </div>
+      </li>
+    );
+  }
+
+  // Level 1 Accordion with recursive children
+  return (
+    <li className={`motorsport-nav-li flex flex-col items-center justify-center w-full ${expanded ? 'is-expanded' : ''}`}>
+      <div className="overflow-hidden py-0.5 sm:py-1 w-full flex justify-center">
+        <button
+          type="button"
+          onClick={() => setExpanded((prev) => !prev)}
+          style={delayStyle}
+          aria-expanded={expanded}
+          aria-label={`Toggle ${link.name} sub-menu`}
+          className={`motorsport-nav-link group flex items-center justify-between sm:justify-center gap-2 sm:gap-4 text-[1.3rem] sm:text-[1.65rem] md:text-[1.95rem] lg:text-[2.25rem] font-bold uppercase tracking-tight leading-snug transition-all duration-300 cursor-pointer active:scale-95 ${
+            active || expanded ? 'text-[#a3e635]' : 'text-white hover:text-white'
+          }`}
+        >
+          <div className="flex items-center gap-2 sm:gap-3">
+            {/* Index Number */}
+            <span
+              className={`text-[9px] sm:text-[10px] md:text-[11px] font-semibold font-mono tracking-widest transition-all duration-300 ${
+                active || expanded ? 'text-[#a3e635] opacity-100' : 'text-[#a3e635] opacity-60 group-hover:opacity-100'
+              }`}
+            >
+              {link.number || String(idx + 1).padStart(2, '0')}
+            </span>
+
+            {/* Link Text */}
+            <span className="relative inline-block transition-transform duration-300 group-hover:translate-x-1.5">
+              {link.name}
+            </span>
+          </div>
+
+          {/* Circular Toggle Button with Chevron */}
+          <div
+            className={`flex h-7 w-7 sm:h-8 sm:w-8 md:h-9 md:w-9 items-center justify-center rounded-full border transition-all duration-300 shrink-0 ${
+              expanded
+                ? 'border-[#a3e635] text-[#a3e635] bg-[#a3e635]/20'
+                : 'border-white/25 text-white/80 group-hover:border-[#a3e635] group-hover:text-[#a3e635]'
+            }`}
+          >
+            <ChevronDown
+              className={`w-3.5 h-3.5 sm:w-4 sm:h-4 transition-transform duration-300 ${
+                expanded ? 'rotate-180 text-[#a3e635]' : ''
+              }`}
+            />
+          </div>
+        </button>
+      </div>
+
+      {/* Level 1 Dropdown List */}
+      <AnimatePresence initial={false}>
+        {expanded && (
+          <motion.ul
+            initial={{ height: 0, opacity: 0 }}
+            animate={{ height: 'auto', opacity: 1 }}
+            exit={{ height: 0, opacity: 0 }}
+            transition={{ duration: 0.28, ease: [0.22, 1, 0.36, 1] }}
+            className="overflow-hidden w-full max-w-sm mx-auto pl-4 sm:pl-6 my-1.5 space-y-1.5 border-l-2 border-[#a3e635]/35"
+          >
+            {link.children?.map((sub) => {
+              const hasSubChildren = Boolean(sub.children && sub.children.length > 0);
+              const isSubOpen = Boolean(subExpanded[sub.name]);
+              const isSubActive = isActive(sub.href);
+
+              if (!hasSubChildren) {
+                return (
+                  <li key={sub.name}>
+                    <Link
+                      href={sub.href}
+                      onClick={onClose}
+                      className={`group flex items-center justify-between text-[1.05rem] sm:text-[1.2rem] md:text-[1.35rem] font-semibold tracking-tight transition-colors duration-200 py-1 ${
+                        isSubActive ? 'text-[#a3e635]' : 'text-white/85 hover:text-[#a3e635]'
+                      }`}
+                    >
+                      <span className="transition-transform duration-200 group-hover:translate-x-1.5">
+                        {sub.name}
+                      </span>
+                      <ArrowRight className="w-3.5 h-3.5 opacity-0 group-hover:opacity-100 transition-opacity text-[#a3e635]" />
+                    </Link>
+                  </li>
+                );
+              }
+
+              // Level 2: Nested dropdown flyout / accordion (Dropdown inside dropdown)
+              return (
+                <li key={sub.name} className="flex flex-col">
+                  <button
+                    type="button"
+                    onClick={() => toggleSub(sub.name)}
+                    aria-expanded={isSubOpen}
+                    aria-label={`Toggle ${sub.name} nested menu`}
+                    className={`group flex items-center justify-between w-full py-1 text-left transition-colors duration-200 cursor-pointer ${
+                      isSubActive || isSubOpen ? 'text-[#a3e635]' : 'text-white/85 hover:text-[#a3e635]'
+                    }`}
+                  >
+                    <span className="text-[1.05rem] sm:text-[1.2rem] md:text-[1.35rem] font-semibold tracking-tight transition-transform duration-200 group-hover:translate-x-1.5">
+                      {sub.name}
+                    </span>
+                    <div
+                      className={`flex h-6 w-6 sm:h-7 sm:w-7 items-center justify-center rounded-full border transition-all shrink-0 ${
+                        isSubOpen
+                          ? 'border-[#a3e635] text-[#a3e635] bg-[#a3e635]/20'
+                          : 'border-white/20 text-white/70 group-hover:border-[#a3e635] group-hover:text-[#a3e635]'
+                      }`}
+                    >
+                      <ChevronDown
+                        className={`w-3 h-3 sm:w-3.5 sm:h-3.5 transition-transform duration-200 ${
+                          isSubOpen ? 'rotate-180 text-[#a3e635]' : ''
+                        }`}
+                      />
+                    </div>
+                  </button>
+
+                  <AnimatePresence initial={false}>
+                    {isSubOpen && (
+                      <motion.ul
+                        initial={{ height: 0, opacity: 0 }}
+                        animate={{ height: 'auto', opacity: 1 }}
+                        exit={{ height: 0, opacity: 0 }}
+                        transition={{ duration: 0.22 }}
+                        className="overflow-hidden pl-3 sm:pl-4 my-1 space-y-1 border-l border-white/20"
+                      >
+                        {sub.children?.map((nested) => (
+                          <li key={nested.name}>
+                            <Link
+                              href={nested.href}
+                              onClick={onClose}
+                              className={`block text-[0.92rem] sm:text-[1.05rem] font-medium transition-colors duration-200 py-0.5 ${
+                                isActive(nested.href)
+                                  ? 'text-[#a3e635]'
+                                  : 'text-white/70 hover:text-[#a3e635]'
+                              }`}
+                            >
+                              {nested.name}
+                            </Link>
+                          </li>
+                        ))}
+                      </motion.ul>
+                    )}
+                  </AnimatePresence>
+                </li>
+              );
+            })}
+          </motion.ul>
+        )}
+      </AnimatePresence>
+    </li>
+  );
+}
+
 export default function Header({ data }: HeaderProps) {
+  const pathname = usePathname();
   const [isOpen, setIsOpen] = useState(false);
 
   // Lock body scroll when menu is active (just like nickho-motorsports.nl)
@@ -47,6 +273,7 @@ export default function Header({ data }: HeaderProps) {
   }, []);
 
   const navLinks = data.links;
+  const isActive = (href: string) => (href === '/' ? pathname === '/' : pathname.startsWith(href));
 
   return (
     <>
@@ -148,39 +375,19 @@ export default function Header({ data }: HeaderProps) {
           }`}
         />
 
-        {/* Centered Navigation Links List */}
-        <div className="relative z-10 my-auto flex w-full flex-col items-center justify-center px-4 sm:px-8 py-1">
-          <ul className="motorsport-nav-ul flex flex-col items-center justify-center space-y-1 sm:space-y-1.5 md:space-y-2">
+        {/* Centered Navigation Links List with multi-level dropdown accordion support */}
+        <div className="relative z-10 my-auto flex w-full flex-col items-center justify-center px-4 sm:px-8 py-2 max-h-[70vh] sm:max-h-[75vh] overflow-y-auto pr-2 scrollbar-none">
+          <ul className="motorsport-nav-ul flex flex-col items-center justify-center space-y-1 sm:space-y-1.5 md:space-y-2 w-full max-w-lg">
             {navLinks.map((link, idx) => (
-              <li key={link.name} className="motorsport-nav-li flex items-center justify-center">
-                <div className="overflow-hidden py-0.5 sm:py-1">
-                  <Link
-                    href={link.href}
-                    onClick={() => setIsOpen(false)}
-                    style={{
-                      transitionDelay: isOpen
-                        ? `${0.26 + idx * 0.06}s`
-                        : `${(navLinks.length - 1 - idx) * 0.03}s`,
-                    }}
-                    className="motorsport-nav-link group flex items-center gap-2 sm:gap-3 text-[1.3rem] sm:text-[1.65rem] md:text-[1.95rem] lg:text-[2.25rem] font-bold uppercase tracking-tight leading-snug text-white transition-all duration-300 active:scale-95"
-                  >
-                    {/* Index Number */}
-                    <span className="text-[9px] sm:text-[10px] md:text-[11px] font-semibold font-mono tracking-widest text-[#a3e635] opacity-60 transition-all duration-300 group-hover:opacity-100">
-                      {link.number || String(idx + 1).padStart(2, '0')}
-                    </span>
-
-                    {/* Link Text */}
-                    <span className="relative inline-block transition-transform duration-300 group-hover:translate-x-1.5">
-                      {link.name}
-                    </span>
-
-                    {/* Arrow Indicator on Hover */}
-                    <span className="hidden sm:inline-block text-xs sm:text-sm md:text-base opacity-0 -translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300 text-[#a3e635]">
-                      →
-                    </span>
-                  </Link>
-                </div>
-              </li>
+              <CurtainNavItem
+                key={link.name}
+                link={link}
+                idx={idx}
+                isOpen={isOpen}
+                totalLinks={navLinks.length}
+                onClose={() => setIsOpen(false)}
+                isActive={isActive}
+              />
             ))}
           </ul>
         </div>

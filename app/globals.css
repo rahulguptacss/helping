@@ -81,9 +81,10 @@ body {
 /* Focus-Dim Hover Effect */
 @media (hover: hover) and (pointer: fine) {
   .motorsport-nav-ul:has(.motorsport-nav-li:hover) .motorsport-nav-li {
-    opacity: 0.2;
+    opacity: 0.25;
   }
-  .motorsport-nav-ul:has(.motorsport-nav-li:hover) .motorsport-nav-li:hover {
+  .motorsport-nav-ul:has(.motorsport-nav-li:hover) .motorsport-nav-li:hover,
+  .motorsport-nav-ul .motorsport-nav-li.is-expanded {
     opacity: 1;
   }
 }

@@ -8,6 +8,7 @@ export interface NavLinkItem {
   name: string;
   href: string;
   number?: string;
+  children?: NavLinkItem[];
 }
 
 export type LinkItem = NavLinkItem;
