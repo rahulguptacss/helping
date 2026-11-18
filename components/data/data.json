@@ -445,10 +445,16 @@
               "title_line4": "PEOPLE",
               "join_badge": {
                 "text": "Get Involved",
+                "href": "/contact",
                 "avatars": "/about/get-involved-avatar.webp",
                 "avatars_alt": "Volunteers"
               },
               "description": "We are a grassroots non-profit dedicated to bridging educational inequalities and healthcare disparities across underserved rural communities. By combining community trust with accountable action, we empower children and families to overcome generational poverty and achieve self-reliance.",
+              "key_features": [
+                { "title": "Education", "description": "Learning materials and school support for children who would otherwise be left out." },
+                { "title": "Care", "description": "Health and nutrition support so families can stay well enough to keep going." },
+                { "title": "Community", "description": "Local volunteers and accountable action, not programmes decided far away." }
+              ],
               "image": "/img/about.webp",
               "image_alt": "Three joyful children smiling together outdoors"
             },

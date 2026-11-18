@@ -95,6 +95,7 @@ export interface AboutSectionData {
     text: string;
     avatars: string;
     avatars_alt: string;
+    href?: string;
   };
   description: string;
   image: string;

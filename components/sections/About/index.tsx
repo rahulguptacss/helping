@@ -1,142 +1,92 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import { Megaphone, Send } from 'lucide-react';
+import { Heart, Send } from 'lucide-react';
 import type { AboutSectionData } from '@/components/types';
 
-interface AboutProps {
-  data: AboutSectionData;
-}
+const ease = [0.22, 1, 0.36, 1] as const;
 
-export default function About({ data }: AboutProps) {
+export default function About({ data }: { data: AboutSectionData }) {
+  const lines = [data.title_line1, data.title_line2, data.title_line3, data.title_line4];
+
   return (
-    <section id="about" className="relative w-full overflow-hidden bg-[#f8f5f0] py-8 sm:py-10 lg:py-12">
-      <div className="mx-auto max-w-[1400px] px-4 sm:px-8 lg:px-12">
-        
-        <div className="grid grid-cols-1 lg:grid-cols-12 items-start gap-10 sm:gap-14 lg:gap-16 xl:gap-20">
-          
-          {/* Left Column: Children Photo (Desktop Left, Mobile Below Content) */}
-          <motion.div
-            initial={{ opacity: 0, x: -40, scale: 0.97 }}
-            whileInView={{ opacity: 1, x: 0, scale: 1 }}
-            viewport={{ once: true, amount: 0.25 }}
-            transition={{ duration: 0.75, ease: [0.22, 1, 0.36, 1] }}
-            className="order-2 lg:order-1 lg:col-span-6 flex justify-center lg:justify-start"
-          >
-            <div className="relative w-full max-w-[500px] lg:max-w-none aspect-[1044/1506] overflow-hidden rounded-none group">
-              <motion.img
-                whileHover={{ scale: 1.03 }}
-                transition={{ duration: 0.6, ease: 'easeOut' }}
-                src={data.image}
-                alt={data.image_alt}
-                className="h-full w-full object-cover object-center rounded-none"
-              />
-            </div>
-          </motion.div>
-
-          {/* Right Column: Eyebrow, Giant Condensed Headline, Floating Get Involved Badge (Desktop Right, Mobile Above Image) */}
-          <div className="order-1 lg:order-2 lg:col-span-6 flex flex-col justify-start pt-2 lg:pt-[145px] xl:pt-[170px]">
-            
-            {/* Eyebrow: Blue Megaphone Circle + ABOUT US (Matching Screenshot) */}
-            <motion.div
-              initial={{ opacity: 0, y: 16 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, amount: 0.25 }}
-              transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
-              className="inline-flex items-center gap-2 self-start"
+    <section id="about" className="relative overflow-hidden bg-[#fbfaf6] py-16 sm:py-20">
+      <div className="mx-auto grid max-w-[1200px] items-center gap-10 px-5 lg:grid-cols-[0.9fr_1.1fr] lg:gap-16">
+        <motion.figure
+          initial={{ opacity: 0, y: 28 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.3 }}
+          transition={{ duration: 0.7, ease }}
+          className="relative"
+        >
+          <div className="absolute -left-4 -top-4 h-24 w-24 rounded-full bg-[#017949]/15" aria-hidden />
+          <img src={data.image} alt={data.image_alt} className="relative aspect-[4/5] w-full rounded-[2rem] object-cover shadow-[0_24px_50px_-28px_rgba(1,121,73,0.55)]" />
+          {data.join_badge.href ? (
+            <motion.a
+              href={data.join_badge.href}
+              animate={{ y: [0, -6, 0] }}
+              transition={{ duration: 4.5, repeat: Infinity, ease: 'easeInOut' }}
+              className="absolute -bottom-5 right-4 flex items-center rounded-full bg-white py-1.5 pl-1.5 pr-4 shadow-lg"
             >
-              <span className="flex h-5 w-5 sm:h-5.5 sm:w-5.5 items-center justify-center rounded-full bg-[#3b82f6] text-white shadow-sm">
-                <Megaphone className="h-3 w-3 -rotate-12 fill-white" />
-              </span>
-              <span className="text-[12px] sm:text-[13px] font-extrabold uppercase tracking-wider text-[#374151]">
-                {data.badge}
-              </span>
-            </motion.div>
+              <img src={data.join_badge.avatars} alt={data.join_badge.avatars_alt} className="h-11 w-11 rounded-full object-cover" />
+              <span className="ml-2 text-sm font-bold text-[#143028]">{data.join_badge.text}</span>
+              <Send className="ml-1.5 h-3.5 w-3.5 -rotate-45 text-[#017949]" />
+            </motion.a>
+          ) : null}
+        </motion.figure>
 
-            {/* Headline Block with Floating Badge (Matching Screenshot) */}
-            <div className="relative mt-5 sm:mt-6">
-              
-              {/* Floating Get Involved Avatar Badge (Matching Screenshot) */}
-              <motion.div
-                initial={{ opacity: 0, scale: 0.75, y: 15 }}
-                whileInView={{ opacity: 1, scale: 1, y: 0 }}
-                viewport={{ once: true, amount: 0.25 }}
-                transition={{ duration: 0.65, delay: 0.35, ease: [0.34, 1.56, 0.64, 1] }}
-                className="absolute -top-3 sm:-top-5 right-0 sm:right-2 md:right-4 lg:right-4 xl:right-8 z-20"
+        <div>
+          <motion.p
+            initial={{ opacity: 0, y: 12 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.45, ease }}
+            className="inline-flex items-center gap-2 text-xs font-extrabold uppercase tracking-[0.16em] text-[#017949]"
+          >
+            <Heart className="h-4 w-4 fill-[#017949]" />
+            {data.badge}
+          </motion.p>
+          <h2 className="font-condensed mt-4 text-[clamp(2.6rem,6vw,4.6rem)] font-bold leading-[0.92] tracking-tight text-[#141414]">
+            {lines.map((line, index) => (
+              <motion.span
+                key={line}
+                initial={{ opacity: 0, y: 18 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: 0.08 * index, ease }}
+                className="block"
               >
-                <motion.div
-                  animate={{ y: [0, -6, 0] }}
-                  transition={{ duration: 4.5, repeat: Infinity, ease: 'easeInOut' }}
-                  whileHover={{ scale: 1.05 }}
-                  className="flex items-center cursor-pointer select-none"
-                >
-                  {/* Circular Avatar of Volunteers */}
-                  <div className="relative z-10 h-13 w-13 sm:h-15 sm:w-15 md:h-16 md:w-16 rounded-full border-[3px] border-white shadow-lg overflow-hidden shrink-0 bg-[#e2e8f0]">
-                    <img
-                      src={data.join_badge.avatars}
-                      alt={data.join_badge.avatars_alt}
-                      className="h-full w-full object-cover object-center"
-                    />
-                  </div>
-
-                  {/* Attached Get Involved Pill angled slightly */}
-                  <div className="relative -ml-3.5 pl-5 pr-3.5 py-1.5 rounded-full bg-[#e8edf3] border border-white/90 shadow-md flex items-center gap-1.5 -rotate-3 hover:rotate-0 transition-transform">
-                    <span className="text-[12px] sm:text-[13px] font-bold text-[#1e293b] whitespace-nowrap">
-                      {data.join_badge.text}
-                    </span>
-                    <Send className="h-3 w-3 sm:h-3.5 sm:w-3.5 text-[#0284c7] -rotate-45 fill-[#0284c7]" />
-                  </div>
-                </motion.div>
-              </motion.div>
-
-              {/* Staggered Giant Condensed Headline (Matching Screenshot) */}
-              <h2 className="font-condensed text-[34px] xs:text-[40px] sm:text-[50px] md:text-[58px] lg:text-[56px] xl:text-[68px] font-bold tracking-[-0.01em] leading-[0.95] text-[#141414]">
-                <motion.span
-                  initial={{ opacity: 0, y: 20 }}
+                {line}
+              </motion.span>
+            ))}
+          </h2>
+          <motion.p
+            initial={{ opacity: 0, y: 16 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.55, delay: 0.3, ease }}
+            className="mt-5 max-w-xl text-base leading-relaxed text-[#3d4f45] sm:text-lg"
+          >
+            {data.description}
+          </motion.p>
+          {data.key_features?.length ? (
+            <ul className="mt-8 grid gap-3 sm:grid-cols-3">
+              {data.key_features.map((item, index) => (
+                <motion.li
+                  key={item.title}
+                  initial={{ opacity: 0, y: 16 }}
                   whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true, amount: 0.25 }}
-                  transition={{ duration: 0.55, delay: 0.12, ease: [0.22, 1, 0.36, 1] }}
-                  className="block whitespace-nowrap"
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.45, delay: 0.12 * index, ease }}
+                  className="rounded-2xl bg-white p-4 ring-1 ring-[#017949]/10"
                 >
-                  {data.title_line1}
-                </motion.span>
-                
-                <motion.span
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true, amount: 0.25 }}
-                  transition={{ duration: 0.55, delay: 0.22, ease: [0.22, 1, 0.36, 1] }}
-                  className="block whitespace-nowrap"
-                >
-                  {data.title_line2}
-                </motion.span>
-
-                <motion.span
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true, amount: 0.25 }}
-                  transition={{ duration: 0.55, delay: 0.32, ease: [0.22, 1, 0.36, 1] }}
-                  className="block whitespace-nowrap"
-                >
-                  {data.title_line3}
-                </motion.span>
-
-                <motion.span
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true, amount: 0.25 }}
-                  transition={{ duration: 0.55, delay: 0.42, ease: [0.22, 1, 0.36, 1] }}
-                  className="block whitespace-nowrap"
-                >
-                  {data.title_line4}
-                </motion.span>
-              </h2>
-            </div>
-
-          </div>
-
+                  <p className="text-sm font-extrabold text-[#017949]">{item.title}</p>
+                  <p className="mt-1 text-sm leading-snug text-[#3d4f45]">{item.description}</p>
+                </motion.li>
+              ))}
+            </ul>
+          ) : null}
         </div>
-
       </div>
     </section>
   );
